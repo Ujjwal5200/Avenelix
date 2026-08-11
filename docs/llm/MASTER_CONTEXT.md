@@ -276,7 +276,47 @@ If the decision is durable, document it so another LLM does not repeat the same 
 
 ---
 
-## 12. Preferred response format for important decisions
+## 12. LLM context efficiency and evidence format
+
+The continuity system is designed to minimize unnecessary token usage while preserving meaning and evidence.
+
+### Preferred document format
+
+Use **Markdown (`.md`) as the default format for human-readable project context, specifications, decisions, handoffs, and LLM instructions**.
+
+When an existing document is being prepared specifically for LLM ingestion and can be faithfully represented as Markdown, convert it to Markdown first. Preserve headings, lists, tables, code blocks, links, identifiers, and other semantically important information.
+
+Do not convert binary or inherently structured artifacts into Markdown merely for appearance. Source code, images, PDFs, datasets, and machine-generated artifacts should retain their native format when that format carries information that Markdown would lose.
+
+### Structured data
+
+When structured data must be passed to an LLM:
+
+1. Prefer concise Markdown tables when the structure is naturally tabular and the data remains lossless.
+2. For larger repeated records, use a **TOON-style/tabular representation** or another compact, explicitly documented lossless representation when supported by the target model/workflow.
+3. Use JSON when strict machine parsing, nested structure, schemas, or tool/API compatibility actually requires JSON.
+4. Never compress data in a way that silently removes distinctions, identifiers, ordering, nulls, units, or other evidence needed for correct reasoning.
+5. Preserve **lossless evidence aliases**: stable short labels/IDs that point to the original evidence or artifact rather than copying large repetitive payloads into context.
+6. When using an alias, make its mapping explicit and stable.
+
+### Context-loading rule
+
+Do not feed the entire repository to an LLM by default.
+
+Load context in layers:
+
+1. `docs/llm/MASTER_CONTEXT.md` first;
+2. relevant specialized documentation second;
+3. relevant source files/configuration third;
+4. raw logs, datasets, screenshots, or large artifacts only when needed for the current decision.
+
+This reduces token bloat while keeping the reasoning grounded in the right evidence.
+
+**Important:** token efficiency is secondary to information integrity. A shorter context that loses important evidence is worse than a larger accurate context.
+
+---
+
+## 13. Preferred response format for important decisions
 
 Use:
 
@@ -294,7 +334,7 @@ Keep ordinary answers concise. Be detailed when the decision genuinely requires 
 
 ---
 
-## 13. Definition of done
+## 14. Definition of done
 
 Do not call something complete just because code was committed.
 
@@ -312,7 +352,7 @@ A task is done when:
 
 ---
 
-## 14. Current priorities
+## 15. Current priorities
 
 Priority order should generally be:
 
@@ -341,7 +381,7 @@ Priority order should generally be:
 
 ---
 
-## 15. Known lessons / mistakes to avoid
+## 16. Known lessons / mistakes to avoid
 
 These are durable lessons from prior iterations:
 
@@ -358,7 +398,7 @@ These are durable lessons from prior iterations:
 
 ---
 
-## 16. Future handoff protocol
+## 17. Future handoff protocol
 
 When starting a new Avenelix thread or using a new LLM:
 
