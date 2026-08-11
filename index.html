@@ -9,28 +9,112 @@
     :root { color-scheme: dark; }
     * { box-sizing: border-box; }
     html, body { min-height: 100%; }
-    body { margin: 0; background: #050505; color: #f5f5f5; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-    main { min-height: 100vh; display: grid; place-items: center; padding: 32px; }
-    .wrap { width: min(820px, 100%); text-align: center; }
-    .brand { margin: 0; font-size: clamp(4rem, 13vw, 9rem); line-height: .9; letter-spacing: -.07em; font-weight: 800; }
-    .accent { width: 72px; height: 2px; margin: 30px auto; background: #fff; opacity: .75; }
-    .tagline { margin: 0; font-size: clamp(1.05rem, 2.6vw, 1.35rem); color: #b9b9b9; letter-spacing: .01em; }
-    .status { display: inline-flex; align-items: center; gap: 9px; margin-top: 34px; padding: 9px 14px; border: 1px solid #292929; border-radius: 999px; color: #d7d7d7; font-size: .86rem; }
-    .dot { width: 7px; height: 7px; border-radius: 50%; background: #fff; }
-    .contact { display: inline-block; margin-top: 28px; padding: 12px 18px; border: 1px solid #3a3a3a; border-radius: 10px; color: #fff; text-decoration: none; transition: border-color .2s, transform .2s; }
-    .contact:hover { border-color: #777; transform: translateY(-1px); }
-    footer { margin-top: 70px; color: #666; font-size: .82rem; }
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #030303;
+      color: #f5f5f5;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(circle at center, black, transparent 72%);
+    }
+    .scene {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      position: relative;
+      isolation: isolate;
+      perspective: 1000px;
+    }
+    .orb-wrap {
+      position: absolute;
+      width: min(56vw, 560px);
+      height: min(56vw, 560px);
+      min-width: 310px;
+      min-height: 310px;
+      transform: translate(28%, -5%) rotateX(10deg) rotateY(-18deg);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .orb {
+      position: absolute;
+      inset: 10%;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 32% 27%, rgba(255,255,255,.95) 0 1.5%, transparent 2%),
+        radial-gradient(circle at 38% 34%, rgba(255,255,255,.18), transparent 20%),
+        radial-gradient(circle at 50% 52%, #202020 0 26%, #0b0b0b 62%, #020202 100%);
+      box-shadow: inset -55px -35px 90px rgba(0,0,0,.95), inset 20px 20px 55px rgba(255,255,255,.08), 0 0 100px rgba(255,255,255,.08);
+      animation: float 7s ease-in-out infinite;
+    }
+    .orb::before, .orb::after {
+      content: "";
+      position: absolute;
+      inset: -4%;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.17);
+      transform: rotate(24deg) scaleY(.32);
+      box-shadow: 0 0 20px rgba(255,255,255,.06);
+    }
+    .orb::after { transform: rotate(-31deg) scaleY(.54); border-color: rgba(255,255,255,.09); }
+    .ring {
+      position: absolute;
+      inset: 3%;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 50%;
+      transform: rotateX(66deg) rotateZ(-22deg);
+      animation: spin 14s linear infinite;
+    }
+    .ring.r2 { inset: 15%; transform: rotateY(72deg) rotateZ(30deg); animation-duration: 11s; animation-direction: reverse; }
+    .content { width: min(900px, 92vw); text-align: left; padding: 40px 0; position: relative; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; border: 1px solid #252525; background: rgba(5,5,5,.62); backdrop-filter: blur(14px); border-radius: 999px; padding: 9px 13px; color: #bdbdbd; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: #fff; box-shadow: 0 0 12px rgba(255,255,255,.8); }
+    h1 { margin: 25px 0 0; font-size: clamp(4rem, 12vw, 9rem); line-height: .86; letter-spacing: -.075em; font-weight: 800; }
+    .tagline { margin: 28px 0 0; max-width: 570px; font-size: clamp(1.05rem, 2.4vw, 1.35rem); line-height: 1.55; color: #a8a8a8; }
+    .tagline strong { color: #f2f2f2; font-weight: 500; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+    .button { display: inline-flex; align-items: center; gap: 9px; padding: 13px 17px; border-radius: 11px; text-decoration: none; font-size: .9rem; transition: transform .2s, border-color .2s, background .2s; }
+    .button.primary { color: #050505; background: #f5f5f5; border: 1px solid #f5f5f5; }
+    .button.secondary { color: #ddd; border: 1px solid #303030; background: rgba(10,10,10,.55); backdrop-filter: blur(12px); }
+    .button:hover { transform: translateY(-2px); }
+    .button.secondary:hover { border-color: #666; }
+    footer { margin-top: 80px; color: #555; font-size: .78rem; }
+    @keyframes float { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-14px) rotate(2deg); } }
+    @keyframes spin { from { transform: rotateX(66deg) rotateZ(-22deg); } to { transform: rotateX(66deg) rotateZ(338deg); } }
+    @media (max-width: 700px) {
+      body { overflow: auto; }
+      .content { text-align: center; }
+      .tagline { margin-left: auto; margin-right: auto; }
+      .actions { justify-content: center; }
+      .orb-wrap { transform: translate(0, -20%); opacity: .45; }
+      footer { margin-top: 55px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .orb, .ring { animation: none; } }
   </style>
 </head>
 <body>
-  <main>
-    <section class="wrap">
-      <h1 class="brand">Avenelix</h1>
-      <div class="accent"></div>
-      <p class="tagline">AI Engineering · Software · SaaS</p>
-      <div class="status"><span class="dot"></span> Coming soon</div>
-      <div><a class="contact" href="mailto:hello@avenelix.com">hello@avenelix.com</a></div>
-      <footer>Building intelligent software and AI systems for businesses.</footer>
+  <main class="scene">
+    <div class="orb-wrap" aria-hidden="true">
+      <div class="orb"></div>
+      <div class="ring"></div>
+      <div class="ring r2"></div>
+    </div>
+    <section class="content">
+      <div class="eyebrow"><span class="dot"></span> Something is taking shape</div>
+      <h1>Avenelix</h1>
+      <p class="tagline"><strong>AI Engineering · Software · SaaS</strong><br />Building intelligent software and AI systems for businesses.</p>
+      <div class="actions">
+        <a class="button primary" href="mailto:hello@avenelix.com">Start a conversation →</a>
+        <a class="button secondary" href="mailto:hello@avenelix.com">hello@avenelix.com</a>
+      </div>
+      <footer>AVENELIX — COMING SOON</footer>
     </section>
   </main>
 </body>
