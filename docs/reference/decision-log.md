@@ -201,3 +201,26 @@ Keep this file focused on decisions that future agents need to know. Do not turn
 - Updated footer to include tagline.
 
 **Do not do:** Add fake product pages, case studies, blog, or news section. Do not add external animation libraries. Keep the single-file architecture.
+
+## 2026-08-12 — Complete site redesign from scratch
+
+**Decision:** Rebuild the entire landing page from scratch with a refined editorial aesthetic, moving away from the previous orb-centric hero toward a typography-first layout with atmospheric background elements.
+
+**Reason:** The founder was not satisfied with the previous design direction. The new approach draws inspiration from reference sites (clevante.cz, daoism.systems, noth.in) and the 11 Main Behance case study, focusing on restraint, editorial typography, cinematic motion, and brand authority rather than visual demos.
+
+**Key changes:**
+- Replaced orb-centric hero with typography-first editorial layout
+- Added refined loader with abstract orb mark
+- Hero now uses 3-line staggered title reveal: "Engineering / intelligent products / for what comes next."
+- Orb repositioned as background atmospheric element (right side, 50vw max) with subtle parallax
+- Removed pupil/core cursor tracking; orb now has only subtle mouse parallax
+- Removed "system initializing" label and signal line
+- Added ambient cursor-follow gradient on background
+- Refined color palette: added `--card:#0a0a0a` surface, tightened borders
+- Principles and direction sections kept but restyled with refined spacing
+- Contact section simplified
+- Footer simplified to two-line layout
+- Mobile: hero becomes single column, orb moves below text, sections stack cleanly
+- Accessibility: reduced-motion hides loader and forces all reveals visible
+
+**Do not do:** Reintroduce the orb as central hero element. Add external frameworks or libraries. Add fake products or conversion-focused elements. Break the single-file architecture.

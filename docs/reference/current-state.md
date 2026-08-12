@@ -40,31 +40,23 @@ The repository is intentionally lightweight:
 
 The current landing page has:
 
-- dark background with cinematic depth
-- Avenelix wordmark
-- AI/software/system positioning
-- abstract central eye/core visual with enhanced depth
-- multiple orbiting rings with meditative motion
-- subtle motion and cursor interaction
-  - pupil tracks cursor
-  - core subtly follows cursor
-  - entire orb zone tilts slightly toward cursor
-  - ambient light gradient follows cursor on background
-- loading screen with "Initializing system" sequence
-- staggered entrance animations for all UI elements
-- scrollable vision-first sections below hero
+- cinematic text-based loader with refined orb mark
+- editorial typographic hero with staggered word reveals
+- dark background with atmospheric depth (grid, grain, ambient cursor light)
+- abstract orb system in hero (refined, background-positioned with subtle parallax)
+- multiple orbital rings with meditative motion
+- scrollable vision-first sections
   - Vision: statement + 3 principle cards (Engineering / Product / Systems)
   - Direction: exploration areas + explicit "no products announced" note
   - Contact: email + status line
-- responsive mobile layout
+- responsive layout optimized for mobile, tablet, desktop
 - contact action through `hello@avenelix.com`
 - Inter font loaded via Google Fonts
-- `prefers-reduced-motion` respected for JS interactions as well as CSS
+- `prefers-reduced-motion` respected for all animations and interactions
 - visible `:focus-visible` styles for keyboard navigation
 - skip link for accessibility
 - favicon fallbacks (`apple-touch-icon`)
 - CSS custom properties for maintainability
-- code documentation separated into `docs/code/`
 - `scroll-behavior:smooth` for navigation
 
 ## Current contact model
