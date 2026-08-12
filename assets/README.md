@@ -12,4 +12,4 @@ Purpose: static brand and visual assets used by the Avenelix site.
 - Group assets by purpose (`brand/`, `images/`, `icons/`, etc.) as the site grows.
 - Prefer SVG for simple logos, icons, and geometric UI graphics.
 - Do not add generated build output here.
-- When replacing a brand asset, update `docs/brand-and-ux.md` and `docs/decision-log.md` if the visual direction changes.
+- When replacing a brand asset, update `docs/brand/brand-and-ux.md` and `docs/reference/decision-log.md` if the visual direction changes.

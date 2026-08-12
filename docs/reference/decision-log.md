@@ -137,3 +137,41 @@ Keep this file focused on decisions that future agents need to know. Do not turn
 **Reason:** iOS Safari and some RSS readers expect explicit touch-icon declarations. The SVG works as a fallback where PNG is not strictly required.
 
 **Do not do:** Assume a single `favicon.svg` declaration covers all platforms without testing.
+
+## 2026-08-12 — Cinematic site overhaul
+
+**Decision:** Significantly enhance the landing page experience with loading screen, ambient lighting, staggered reveals, and deeper orb system.
+
+**Reason:** The founder wants the site to make a strong impression that signals technical capability and seriousness to visitors. The previous version was solid but lacked the cinematic polish that makes a coming-soon page feel like a credible early-stage technology company.
+
+**Changes:**
+- Added loading screen with "Initializing system" text and progress bar (1.4s).
+- Added ambient cursor-follow gradient on the background layer.
+- Added staggered reveal animations for all UI elements (header, kicker, title, description, CTA, microcopy, label, corner).
+- Added second outer halo layer for atmospheric depth.
+- Increased particle count from 6 to 8 with varying sizes and opacities.
+- Added subtle orb-zone tilt/rotation based on cursor position for a "looking around" effect.
+- Extended orbit animation durations for more meditative motion.
+- Increased title line-height from `.79` to `.82` for better readability.
+- Added `font-weight:300` to description for more refined typographic hierarchy.
+- Improved button hover state with reduced lift (-2px instead of -3px) and shadow.
+- Added loading screen visibility toggle for `prefers-reduced-motion`.
+- Increased grain opacity from `.03` to `.035` for subtle texture presence.
+
+**Do not do:** Add a 3D globe, Earth imagery, or generic blue AI gradients. These violate the documented brand direction. Do not add external dependencies or a build system. Do not sacrifice performance for visual effects.
+
+## 2026-08-12 — Code documentation separation
+
+**Decision:** Create `docs/code/` for implementation-specific documentation.
+
+**Reason:** Strategy docs and implementation docs have different audiences and update frequencies. Separating them makes the documentation system cleaner and prevents code changes from cluttering the strategic context.
+
+**Do not do:** Move `docs/llm/` out of `docs/` in the same change — that is a separate decision with its own reference updates needed.
+
+## 2026-08-12 — Documentation folder reorganization
+
+**Decision:** Organize docs into `strategy/`, `brand/`, `reference/`, `seo/`, `llm/`, and `code/` subfolders.
+
+**Reason:** A flat `docs/` with 10+ files is harder to navigate. Grouping by purpose makes the documentation system clearer for both humans and agents.
+
+**Do not do:** Break existing relative links without updating them. Do not move files in isolation without updating cross-references.

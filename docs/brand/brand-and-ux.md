@@ -37,7 +37,7 @@ Avoid:
 - crypto-style visuals
 - generic SaaS gradients
 - excessive glassmorphism
-- cheesy “AI brain” graphics
+- cheesy "AI brain" graphics
 - unnecessary UI clutter
 
 ## Central visual

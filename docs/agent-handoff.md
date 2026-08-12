@@ -118,7 +118,7 @@ The live test reports that the homepage is available to Google and can be indexe
 Before changing the site:
 
 1. Read this file.
-2. Read `vision.md`, `brand-and-ux.md`, `current-state.md` and `decision-log.md`.
+2. Read `strategy/vision.md`, `brand/brand-and-ux.md`, `reference/current-state.md` and `reference/decision-log.md`.
 3. Inspect the actual code before proposing a rewrite.
 4. Preserve working DNS/hosting/SEO configuration unless there is evidence it is wrong.
 5. Make changes incrementally and verify them.

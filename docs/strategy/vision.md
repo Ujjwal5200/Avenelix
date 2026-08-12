@@ -49,7 +49,7 @@ The layers are not mutually exclusive. The exact model should be driven by evide
 
 Prefer products that solve a concrete problem and have a clear user and value proposition.
 
-AI should be used because it improves the product, not because the label “AI” makes the idea sound modern.
+AI should be used because it improves the product, not because the label "AI" makes the idea sound modern.
 
 ## Decision filter
 

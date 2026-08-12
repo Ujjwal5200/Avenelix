@@ -19,16 +19,30 @@ Avenelix/
 │       └── favicon.svg        # Canonical Avenelix brand mark
 └── docs/
     ├── README.md              # Documentation map
-    ├── architecture.md        # This file: repository structure and scaling rules
-    ├── file-map.md             # What each important file does
-    ├── agent-handoff.md        # Context for new agents/threads
-    ├── vision.md               # Long-term Avenelix direction
-    ├── current-state.md        # Current stage and infrastructure
-    ├── technical-approach.md   # Technical direction
-    ├── brand-and-ux.md         # Visual and UX constraints
-    ├── roadmap.md              # Planned evolution
-    ├── decision-log.md         # Important decisions and rationale
-    └── seo-strategy.md         # SEO/search strategy
+    ├── agent-handoff.md       # Compact context for new agents
+    ├── strategy/              # Business and product strategy
+    │   ├── README.md
+    │   ├── vision.md
+    │   ├── roadmap.md
+    │   └── technical-approach.md
+    ├── brand/                 # Visual identity and UX direction
+    │   ├── README.md
+    │   └── brand-and-ux.md
+    ├── reference/             # Infrastructure, decisions, and status
+    │   ├── README.md
+    │   ├── current-state.md
+    │   ├── architecture.md    # This file: repository structure and scaling rules
+    │   ├── decision-log.md
+    │   └── file-map.md
+    ├── seo/                   # Search engine configuration
+    │   ├── README.md
+    │   ├── seo-strategy.md
+    │   ├── robots.md
+    │   └── sitemap.md
+    ├── llm/                   # LLM/agent operating instructions
+    │   └── ...
+    └── code/                  # Implementation-specific documentation
+        └── ...
 ```
 
 ## Why `index.html` stays at root
@@ -58,7 +72,7 @@ When the full product begins, migrate deliberately rather than mixing framework 
 3. `docs/` = strategy, decisions, architecture, handoff, and planning context.
 4. Never create random files in the root for experiments; put experiments in a clearly named temporary branch or documented area.
 5. Every new meaningful directory gets a `README.md` explaining its purpose and rules.
-6. Every new important file must be added to `docs/file-map.md` with a one-line purpose.
+6. Every new important file must be added to `docs/reference/file-map.md` with a one-line purpose.
 7. Do not split code into many files just for the appearance of architecture. Split when reuse, maintainability, testing, or scale justifies it.
 8. Before a structural change, update this document first or in the same change.
 

@@ -45,7 +45,7 @@ Load:
 Examples:
 - landing-page animation → relevant UI/brand docs + current page source;
 - SEO change → `docs/seo/*` + relevant root SEO files;
-- repository organization → `docs/architecture.md` + `docs/file-map.md`.
+- repository organization → `docs/reference/architecture.md` + `docs/reference/file-map.md`.
 
 ### Tier 2 — Planning / design / strategy
 Use when discussing product direction, company positioning, branding, naming, architecture, roadmap, or a meaningful strategic decision.
@@ -56,9 +56,9 @@ Load:
 - current implementation only when the decision affects it.
 
 Examples:
-- new product idea → `vision.md`, `roadmap.md`, relevant product/technical docs;
-- logo/brand decision → `brand-and-ux.md`, current visual implementation, relevant decision log;
-- architecture decision → `architecture.md`, `technical-approach.md`, current structure.
+- new product idea → `docs/strategy/vision.md`, `docs/strategy/roadmap.md`, relevant product/technical docs;
+- logo/brand decision → `docs/brand/brand-and-ux.md`, current visual implementation, relevant decision log;
+- architecture decision → `docs/reference/architecture.md`, `docs/strategy/technical-approach.md`, current structure.
 
 Do not load unrelated SEO/design/product documents simply because they exist.
 
@@ -70,10 +70,10 @@ Load:
 - `CONTEXT_PERSISTENCE.md`;
 - this router;
 - `agent-handoff.md`;
-- `current-state.md`;
-- `vision.md`;
-- `architecture.md`;
-- `roadmap.md`;
+- `../reference/current-state.md`;
+- `../strategy/vision.md`;
+- `../reference/architecture.md`;
+- `../strategy/roadmap.md`;
 - only then the specialized docs required by the current topic.
 
 This is the **exception**, not the default for every turn.
@@ -82,15 +82,15 @@ This is the **exception**, not the default for every turn.
 
 | Task | Primary context | Secondary context |
 |---|---|---|
-| Product idea / validation | `vision.md`, `roadmap.md` | `decision-log.md`, relevant technical docs |
-| Company positioning | `vision.md`, `brand-and-ux.md` | `decision-log.md` |
-| UI / landing page | `brand-and-ux.md` | current source, `decision-log.md` |
-| Logo / favicon | `brand-and-ux.md` | current assets, `decision-log.md` |
-| SEO / indexing | `docs/seo/*`, `seo-strategy.md` | root SEO files, current homepage |
-| File structure | `architecture.md`, `file-map.md` | local READMEs |
-| Technical architecture | `technical-approach.md`, `architecture.md` | relevant source/config |
-| Roadmap / priorities | `roadmap.md`, `current-state.md` | `vision.md`, `decision-log.md` |
-| Handoff to new LLM | `MASTER_CONTEXT.md`, `CONTEXT_PERSISTENCE.md` | `agent-handoff.md`, `current-state.md` |
+| Product idea / validation | `docs/strategy/vision.md`, `docs/strategy/roadmap.md` | `docs/reference/decision-log.md`, relevant technical docs |
+| Company positioning | `docs/strategy/vision.md`, `docs/brand/brand-and-ux.md` | `docs/reference/decision-log.md` |
+| UI / landing page | `docs/brand/brand-and-ux.md` | current source, `docs/reference/decision-log.md` |
+| Logo / favicon | `docs/brand/brand-and-ux.md` | current assets, `docs/reference/decision-log.md` |
+| SEO / indexing | `docs/seo/*`, `docs/seo/seo-strategy.md` | root SEO files, current homepage |
+| File structure | `docs/reference/architecture.md`, `docs/reference/file-map.md` | local READMEs |
+| Technical architecture | `docs/strategy/technical-approach.md`, `docs/reference/architecture.md` | relevant source/config |
+| Roadmap / priorities | `docs/strategy/roadmap.md`, `docs/reference/current-state.md` | `docs/strategy/vision.md`, `docs/reference/decision-log.md` |
+| Handoff to new LLM | `MASTER_CONTEXT.md`, `CONTEXT_PERSISTENCE.md` | `agent-handoff.md`, `../reference/current-state.md` |
 | Small code fix | affected source file | local README only if needed |
 
 ## Code-task rule
@@ -127,7 +127,7 @@ When adding new information:
 
 1. Update the most specific relevant document first.
 2. Update `MASTER_CONTEXT.md` only when the information is genuinely cross-cutting or changes core project direction.
-3. Update `decision-log.md` when a meaningful decision or rejection should be historically traceable.
+3. Update `docs/reference/decision-log.md` when a meaningful decision or rejection should be historically traceable.
 4. Do not copy the same explanation into multiple documents.
 5. Prefer changing an existing concise section over adding another long section.
 

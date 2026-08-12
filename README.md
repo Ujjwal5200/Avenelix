@@ -9,15 +9,15 @@ The current repository contains the coming-soon landing page for `avenelix.com`.
 Before changing the product, brand, architecture or direction, read:
 
 - [`docs/agent-handoff.md`](docs/agent-handoff.md) — compact context for a new agent/thread.
-- [`docs/current-state.md`](docs/current-state.md) — current stage and infrastructure.
-- [`docs/vision.md`](docs/vision.md) — what Avenelix is intended to become.
-- [`docs/architecture.md`](docs/architecture.md) — repository structure and scaling rules.
-- [`docs/file-map.md`](docs/file-map.md) — quick purpose of important files.
-- [`docs/technical-approach.md`](docs/technical-approach.md) — current technical direction.
-- [`docs/brand-and-ux.md`](docs/brand-and-ux.md) — visual/brand decisions and constraints.
-- [`docs/roadmap.md`](docs/roadmap.md) — near-term and later plans.
-- [`docs/decision-log.md`](docs/decision-log.md) — important decisions and why they were made.
-- [`docs/seo-strategy.md`](docs/seo-strategy.md) — SEO/search strategy.
+- [`docs/reference/current-state.md`](docs/reference/current-state.md) — current stage and infrastructure.
+- [`docs/strategy/vision.md`](docs/strategy/vision.md) — what Avenelix is intended to become.
+- [`docs/reference/architecture.md`](docs/reference/architecture.md) — repository structure and scaling rules.
+- [`docs/reference/file-map.md`](docs/reference/file-map.md) — quick purpose of important files.
+- [`docs/strategy/technical-approach.md`](docs/strategy/technical-approach.md) — current technical direction.
+- [`docs/brand/brand-and-ux.md`](docs/brand/brand-and-ux.md) — visual/brand decisions and constraints.
+- [`docs/strategy/roadmap.md`](docs/strategy/roadmap.md) — near-term and later plans.
+- [`docs/reference/decision-log.md`](docs/reference/decision-log.md) — important decisions and why they were made.
+- [`docs/seo/seo-strategy.md`](docs/seo/seo-strategy.md) — SEO/search strategy.
 
 ## Repository structure
 
@@ -35,7 +35,7 @@ Before changing the product, brand, architecture or direction, read:
     └── ...
 ```
 
-The root intentionally remains small. Do not introduce a framework or large `src/` structure until the product requires it. See `docs/architecture.md` before restructuring.
+The root intentionally remains small. Do not introduce a framework or large `src/` structure until the product requires it. See `docs/reference/architecture.md` before restructuring.
 
 ## Current stack
 
@@ -49,4 +49,4 @@ The root intentionally remains small. Do not introduce a framework or large `src
 
 ## Important rule for future agents
 
-Do not redesign Avenelix from scratch merely because a different aesthetic is fashionable. Preserve the intent in `docs/brand-and-ux.md`, preserve the architectural rules in `docs/architecture.md`, and update the relevant docs when a strategic or technical decision changes.
+Do not redesign Avenelix from scratch merely because a different aesthetic is fashionable. Preserve the intent in `docs/brand/brand-and-ux.md`, preserve the architectural rules in `docs/reference/architecture.md`, and update the relevant docs when a strategic or technical decision changes.

@@ -28,24 +28,29 @@ The brand/domain exists and the first public web presence is live. The founder i
 
 The repository is intentionally lightweight:
 
-- `index.html` — current landing page.
+- `index.html` — current landing page (single-file: HTML + CSS + JS).
 - `robots.txt` — crawler rules + sitemap reference.
 - `sitemap.xml` — homepage sitemap.
 - `README.md` — project entry point.
 - `docs/` — durable project context.
+- `docs/code/` — implementation-specific documentation (CSS architecture, JS behavior, assets).
 
 ## Current website experience
 
 The current landing page has:
 
-- dark background
+- dark background with cinematic depth
 - Avenelix wordmark
 - AI/software/system positioning
-- abstract central eye/core visual
-- multiple orbiting rings
+- abstract central eye/core visual with enhanced depth
+- multiple orbiting rings with meditative motion
 - subtle motion and cursor interaction
   - pupil tracks cursor
   - core subtly follows cursor
+  - entire orb zone tilts slightly toward cursor
+  - ambient light gradient follows cursor on background
+- loading screen with "Initializing system" sequence
+- staggered entrance animations for all UI elements
 - responsive mobile layout
 - contact action through `hello@avenelix.com`
 - Inter font loaded via Google Fonts
@@ -54,6 +59,7 @@ The current landing page has:
 - skip link for accessibility
 - favicon fallbacks (`apple-touch-icon`)
 - CSS custom properties for maintainability
+- code documentation separated into `docs/code/`
 
 ## Current contact model
 
