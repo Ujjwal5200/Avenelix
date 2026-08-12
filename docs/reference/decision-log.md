@@ -175,3 +175,29 @@ Keep this file focused on decisions that future agents need to know. Do not turn
 **Reason:** A flat `docs/` with 10+ files is harder to navigate. Grouping by purpose makes the documentation system clearer for both humans and agents.
 
 **Do not do:** Break existing relative links without updating them. Do not move files in isolation without updating cross-references.
+
+## 2026-08-12 — Website redesign strategy
+
+**Decision:** Create a comprehensive redesign strategy document (`docs/strategy/website-redesign-strategy.md`) based on analysis of clevante.cz, daoism.systems, and noth.in.
+
+**Reason:** The founder wants the Avenelix site to build immediate credibility and communicate massive potential during the pre-product phase. The reference sites demonstrate how dark, minimal, type-forward sites with cinematic loaders create brand authority without claiming products that don't exist.
+
+**Do not do:** Implement the redesign without first documenting the strategy and getting alignment. Do not copy specific visual elements from reference sites—extract principles instead.
+
+## 2026-08-12 — Vision-first expansion
+
+**Decision:** Add scrollable `#vision`, `#direction`, and `#contact` sections below the hero to transform the page from a single-viewport teaser into a narrative experience.
+
+**Reason:** A single hero section communicates "something is here" but not "this is a studio with direction." The expanded structure lets the site communicate philosophy, exploration areas, and contact path without claiming products that don't exist. This is the highest-impact change for building credibility during the pre-product phase.
+
+**Changes:**
+- Added `#vision` section with 2-sentence statement and 3 principle cards (Engineering / Product / Systems).
+- Added `#direction` section with 4 exploration bullets and explicit "No products announced. Building in public." note.
+- Added `#contact` section with `hello@avenelix.com` and 24–48 hour response promise.
+- Changed `body` overflow from `hidden` to default (`auto`) so sections are scrollable.
+- Added `scroll-behavior:smooth` to `html`.
+- Refined hero description: "taking useful problems from first prototype to production — engineering the systems that build the future."
+- Added `IntersectionObserver` for fade-in-up scroll reveals on `.section` elements.
+- Updated footer to include tagline.
+
+**Do not do:** Add fake product pages, case studies, blog, or news section. Do not add external animation libraries. Keep the single-file architecture.

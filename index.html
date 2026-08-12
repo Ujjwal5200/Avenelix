@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Avenelix builds AI systems, software and SaaS products from idea to production.">
+<meta name="description" content="Avenelix is an independent AI & software venture exploring useful systems, products and ideas — from first prototype to production.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://avenelix.com/">
 <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml">
@@ -12,13 +12,13 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://avenelix.com/">
 <meta property="og:title" content="Avenelix — AI Engineering, Software & SaaS">
-<meta property="og:description" content="Avenelix builds AI systems, software and SaaS products from idea to production.">
+<meta property="og:description" content="Avenelix is an independent AI & software venture exploring useful systems, products and ideas — from first prototype to production.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Avenelix — AI Engineering, Software & SaaS">
-<meta name="twitter:description" content="Avenelix builds AI systems, software and SaaS products from idea to production.">
+<meta name="twitter:description" content="Avenelix is an independent AI & software venture exploring useful systems, products and ideas — from first prototype to production.">
 <title>Avenelix — AI Engineering, Software & SaaS</title>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Avenelix","url":"https://avenelix.com/","description":"Avenelix builds AI systems, software and SaaS products from idea to production."},{"@type":"WebSite","name":"Avenelix","url":"https://avenelix.com/","description":"Avenelix builds AI systems, software and SaaS products from idea to production."}]}
+{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Avenelix","url":"https://avenelix.com/","description":"Avenelix is an independent AI & software venture exploring useful systems, products and ideas — from first prototype to production."},{"@type":"WebSite","name":"Avenelix","url":"https://avenelix.com/","description":"Avenelix is an independent AI & software venture exploring useful systems, products and ideas — from first prototype to production."}]}
 </script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap');
@@ -30,14 +30,15 @@
   --muted:#858b92;
   --dim:#555a57;
   --accent:#d9ff8c;
-  --card:#14171a;
-  --border:rgba(255,255,255,.10);
+  --card:#0a0a0a;
+  --border:rgba(255,255,255,.06);
   --ease:cubic-bezier(.22,.61,.36,1);
   --ease-out:cubic-bezier(.16,1,.3,1);
 }
 
 *{box-sizing:border-box}
-html,body{margin:0;min-height:100%;background:var(--bg);color:var(--fg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow:hidden}
+html{scroll-behavior:smooth}
+html,body{margin:0;min-height:100%;background:var(--bg);color:var(--fg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 
 .skip-link{position:absolute;top:-100px;left:1rem;background:var(--fg);color:var(--bg);padding:.5rem 1rem;border-radius:0 0 6px 6px;z-index:100;text-decoration:none;font-weight:700;font-size:14px}
 .skip-link:focus{top:0}
@@ -49,6 +50,7 @@ html,body{margin:0;min-height:100%;background:var(--bg);color:var(--fg);font-fam
 .loader-bar{width:120px;height:1px;background:rgba(255,255,255,.06);position:relative;overflow:hidden}
 .loader-bar:after{content:"";position:absolute;left:-40%;top:0;height:100%;width:40%;background:var(--accent);animation:load 1.2s var(--ease-out) infinite}
 
+/* Hero stage */
 .stage{height:100svh;min-height:620px;position:relative;overflow:hidden;background:var(--bg)}
 .grain{position:absolute;inset:-50%;z-index:20;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");animation:grain .25s steps(2) infinite}
 .back{position:absolute;inset:0;background:radial-gradient(ellipse at 73% 47%,var(--card) 0,transparent 34%),radial-gradient(ellipse at 28% 83%,#0d0d0d 0,transparent 35%),var(--bg)}
@@ -67,7 +69,7 @@ html,body{margin:0;min-height:100%;background:var(--bg);color:var(--fg);font-fam
 .copy{width:54%;position:relative;z-index:8}
 .kicker{color:var(--muted);font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:25px;display:flex;align-items:center;gap:10px;opacity:0;animation:reveal .8s var(--ease-out) 1.6s forwards}
 .kicker:before{content:"";height:1px;width:32px;background:var(--dim)}
-.title{font-size:clamp(4.8rem,11.5vw,10rem);line-height:.79;letter-spacing:-.09em;margin:0;font-weight:800}
+.title{font-size:clamp(4.8rem,11.5vw,10rem);line-height:.82;letter-spacing:-.09em;margin:0;font-weight:800}
 .title span{display:block;background:linear-gradient(100deg,#fff 15%,#aab0b8 55%,#fff 90%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 7s linear infinite,revealText 1s var(--ease-out) forwards;opacity:0}
 .title span:nth-child(2){animation-delay:1.8s,.2s}
 .desc{font-size:clamp(1rem,1.8vw,1.2rem);line-height:1.6;color:var(--muted);max-width:530px;margin:30px 0 0;font-weight:300;opacity:0;animation:reveal .8s var(--ease-out) 2s forwards}
@@ -117,6 +119,35 @@ html,body{margin:0;min-height:100%;background:var(--bg);color:var(--fg);font-fam
 .p:nth-child(8){left:68%;top:32%;animation-delay:-7s;width:1px;height:1px;opacity:.15}
 .corner{position:absolute;right:5vw;bottom:28px;color:var(--dim);font-size:9px;letter-spacing:.15em;text-transform:uppercase;z-index:8;opacity:0;animation:reveal .8s var(--ease-out) 2.8s forwards}
 
+/* Sections */
+.section{position:relative;z-index:5;padding:120px 5vw;max-width:1260px;margin:auto;opacity:0;transform:translateY(30px);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}
+.section.visible{opacity:1;transform:none}
+.section-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:40px;display:flex;align-items:center;gap:12px}
+.section-label:before{content:"";height:1px;width:24px;background:var(--accent)}
+.section-title{font-size:clamp(2.5rem,5vw,4.5rem);line-height:.92;letter-spacing:-.04em;margin:0 0 24px;font-weight:700}
+.section-body{font-size:clamp(1rem,1.6vw,1.15rem);line-height:1.7;color:var(--muted);max-width:620px;font-weight:300}
+
+/* Principles */
+.principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;margin-top:60px;background:var(--border);border:1px solid var(--border)}
+.principle{background:var(--bg);padding:40px 36px;transition:background .3s ease}
+.principle:hover{background:var(--card)}
+.principle-title{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg);margin-bottom:16px;font-weight:500}
+.principle-body{font-size:14px;line-height:1.6;color:var(--muted);font-weight:300}
+
+/* Direction */
+.direction-list{list-style:none;padding:0;margin:40px 0 0;display:grid;gap:12px}
+.direction-list li{font-size:15px;color:var(--muted);padding:16px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:16px;font-weight:300}
+.direction-list li:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);flex-shrink:0}
+.direction-note{font-size:11px;letter-spacing:.08em;color:var(--dim);margin-top:24px;font-weight:300}
+
+/* Contact */
+.contact-email{font-size:clamp(1.2rem,2.5vw,1.8rem);color:var(--fg);text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:4px;transition:border-color .3s ease,color .3s ease}
+.contact-email:hover{border-color:var(--accent);color:var(--accent)}
+.contact-status{margin-top:20px;font-size:11px;letter-spacing:.08em;color:var(--dim);font-weight:300}
+
+/* Footer */
+.footer{position:relative;z-index:5;padding:40px 5vw;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);font-weight:300}
+
 /* Keyframes */
 @keyframes reveal{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @keyframes revealText{from{opacity:0;transform:translateY(30px);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
@@ -140,7 +171,6 @@ html,body{margin:0;min-height:100%;background:var(--bg);color:var(--fg);font-fam
 
 /* Responsive */
 @media(max-width:800px){
-  body{overflow:auto}
   .stage{min-height:760px}
   .header{padding:22px 20px}
   .hero{display:block;padding:115px 20px 40px}
@@ -153,13 +183,15 @@ html,body{margin:0;min-height:100%;background:var(--bg);color:var(--fg);font-fam
   .label{right:10%;bottom:15%}
   .signal{display:none}
   .corner{display:none}
+  .section{padding:80px 20px}
+  .principles{grid-template-columns:1fr}
 }
 
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
   .title span{background-position:center}
   .loader{display:none!important}
-  .header,.kicker,.title span,.desc,.actions,.micro,.label,.corner{opacity:1!important;animation:none!important}
+  .header,.kicker,.title span,.desc,.actions,.micro,.label,.corner,.section{opacity:1!important;animation:none!important;transform:none!important}
 }
 </style>
 </head>
@@ -172,7 +204,7 @@ html,body{margin:0;min-height:100%;background:var(--bg);color:var(--fg);font-fam
   <div class="loader-bar"></div>
 </div>
 
-<main id="main" class="stage" aria-label="Avenelix coming soon">
+<main id="main">
 <div class="back"></div>
 <div class="ambient" id="ambient"></div>
 <div class="grid"></div>
@@ -193,7 +225,7 @@ html,body{margin:0;min-height:100%;background:var(--bg);color:var(--fg);font-fam
       <span>BUILDING</span>
       <span>WHAT'S NEXT.</span>
     </h1>
-    <p class="desc">Avenelix is an independent <b>AI & software</b> venture exploring useful systems, products and ideas — from first prototype to production.</p>
+    <p class="desc">Avenelix is an independent <b>AI & software</b> venture taking useful problems from first prototype to production — engineering the systems that build the future.</p>
     <div class="actions">
       <a class="btn primary" href="mailto:hello@avenelix.com">Get in touch</a>
     </div>
@@ -224,10 +256,59 @@ html,body{margin:0;min-height:100%;background:var(--bg);color:var(--fg);font-fam
 <div class="corner">© 2026 Avenelix</div>
 </main>
 
+<!-- Vision section -->
+<section class="section" id="vision">
+  <div class="section-label">Vision</div>
+  <h2 class="section-title">From idea to production.</h2>
+  <p class="section-body">We take useful problems and turn them into AI-powered systems, software, and products. Not experiments — engineered solutions built to last.</p>
+  <div class="principles">
+    <div class="principle">
+      <div class="principle-title">Engineering</div>
+      <div class="principle-body">Clear evaluation before optimization. Model abstraction where it reduces lock-in. Production-grade systems from day one.</div>
+    </div>
+    <div class="principle">
+      <div class="principle-title">Product</div>
+      <div class="principle-body">Concrete problems. Clear users. Real value. We build because AI and software create a material advantage — not because the label sounds modern.</div>
+    </div>
+    <div class="principle">
+      <div class="principle-title">Systems</div>
+      <div class="principle-body">Async processing, fallbacks, observability, and cost controls. The infrastructure that makes complex AI reliable at scale.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Direction section -->
+<section class="section" id="direction">
+  <div class="section-label">Direction</div>
+  <h2 class="section-title">Currently exploring.</h2>
+  <p class="section-body">We are in the early building and validation stage. No products announced yet. The strongest ideas will emerge from real problems, not assumptions.</p>
+  <ul class="direction-list">
+    <li>AI infrastructure and orchestration</li>
+    <li>Autonomous systems and automation</li>
+    <li>Developer tools and platforms</li>
+    <li>Useful SaaS from validated demand</li>
+  </ul>
+  <div class="direction-note">No products announced. Building in public. Reach out if you are working on something interesting.</div>
+</section>
+
+<!-- Contact section -->
+<section class="section" id="contact">
+  <div class="section-label">Contact</div>
+  <h2 class="section-title">Get in touch.</h2>
+  <p class="section-body">Early-stage ventures are built on early-stage conversations. If you are exploring a problem worth solving, we should talk.</p>
+  <a class="contact-email" href="mailto:hello@avenelix.com">hello@avenelix.com</a>
+  <div class="contact-status">Building in public. Responding within 24–48 hours.</div>
+</section>
+
+<footer class="footer">
+  <div>© 2026 Avenelix</div>
+  <div>No noise. Just building.</div>
+</footer>
+
 <script>
 (function(){
   'use strict';
-  
+
   // Loading screen
   var loader = document.getElementById('loader');
   if (loader) {
@@ -268,6 +349,28 @@ html,body{margin:0;min-height:100%;background:var(--bg);color:var(--fg);font-fam
         orb.style.transform = 'translateY(-50%)';
       });
     }
+  }
+
+  // Scroll reveals
+  var sections = document.querySelectorAll('.section');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    sections.forEach(function(section) {
+      observer.observe(section);
+    });
+  } else {
+    // Fallback: show all sections immediately
+    sections.forEach(function(section) {
+      section.classList.add('visible');
+    });
   }
 })();
 </script>

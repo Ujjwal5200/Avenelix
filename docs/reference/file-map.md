@@ -4,7 +4,7 @@ This is the quick navigation index. Read this before opening individual files.
 
 | Path | Purpose | Change when |
 |---|---|---|
-| `index.html` | Current production coming-soon page: semantic HTML, SEO metadata, inline CSS, visual system, and small cursor interaction | Page UI, SEO metadata, animation, interaction, or content changes |
+| `index.html` | Current production coming-soon page: semantic HTML, SEO metadata, inline CSS, visual system, cursor interaction, scrollable vision sections | Page UI, SEO metadata, animation, interaction, content, or structure changes |
 | `robots.txt` | Controls crawler access | Search crawling policy changes |
 | `sitemap.xml` | Declares canonical URLs for search discovery | Public URL/page structure changes |
 | `assets/README.md` | Rules for static assets | Asset architecture changes |
@@ -17,6 +17,7 @@ This is the quick navigation index. Read this before opening individual files.
 | `docs/strategy/technical-approach.md` | Current technical approach and constraints | Architecture or technology decisions change |
 | `docs/brand/brand-and-ux.md` | Visual identity, interaction philosophy, and design constraints | Brand/UI direction changes |
 | `docs/strategy/roadmap.md` | Near-term and longer-term sequence | Priorities or milestones change |
+| `docs/strategy/website-redesign-strategy.md` | Comprehensive redesign strategy and wireframe plan | Design direction or site structure changes |
 | `docs/reference/decision-log.md` | Important decisions and why they were made | A meaningful decision is made or reversed |
 | `docs/seo/seo-strategy.md` | SEO/indexing/search strategy | Search strategy or SEO implementation changes |
 | `docs/reference/architecture.md` | Repository structure and scaling rules | Folder structure or scaling strategy changes |

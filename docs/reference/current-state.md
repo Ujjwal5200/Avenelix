@@ -34,6 +34,7 @@ The repository is intentionally lightweight:
 - `README.md` — project entry point.
 - `docs/` — durable project context.
 - `docs/code/` — implementation-specific documentation (CSS architecture, JS behavior, assets).
+- `docs/strategy/website-redesign-strategy.md` — comprehensive redesign plan with reference site analysis.
 
 ## Current website experience
 
@@ -51,6 +52,10 @@ The current landing page has:
   - ambient light gradient follows cursor on background
 - loading screen with "Initializing system" sequence
 - staggered entrance animations for all UI elements
+- scrollable vision-first sections below hero
+  - Vision: statement + 3 principle cards (Engineering / Product / Systems)
+  - Direction: exploration areas + explicit "no products announced" note
+  - Contact: email + status line
 - responsive mobile layout
 - contact action through `hello@avenelix.com`
 - Inter font loaded via Google Fonts
@@ -60,6 +65,7 @@ The current landing page has:
 - favicon fallbacks (`apple-touch-icon`)
 - CSS custom properties for maintainability
 - code documentation separated into `docs/code/`
+- `scroll-behavior:smooth` for navigation
 
 ## Current contact model
 
