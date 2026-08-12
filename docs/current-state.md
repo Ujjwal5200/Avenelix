@@ -1,6 +1,6 @@
 # Avenelix Current State
 
-_Last updated: 2026-08-11_
+_Last updated: 2026-08-12_
 
 ## Status
 
@@ -44,8 +44,16 @@ The current landing page has:
 - abstract central eye/core visual
 - multiple orbiting rings
 - subtle motion and cursor interaction
+  - pupil tracks cursor
+  - core subtly follows cursor
 - responsive mobile layout
 - contact action through `hello@avenelix.com`
+- Inter font loaded via Google Fonts
+- `prefers-reduced-motion` respected for JS interactions as well as CSS
+- visible `:focus-visible` styles for keyboard navigation
+- skip link for accessibility
+- favicon fallbacks (`apple-touch-icon`)
+- CSS custom properties for maintainability
 
 ## Current contact model
 
