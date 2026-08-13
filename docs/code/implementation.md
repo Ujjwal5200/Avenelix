@@ -18,7 +18,7 @@ The landing page is intentionally a single HTML file. Do not introduce a framewo
 
 ## Key patterns
 
-- **CSS**: Embedded in `<style>` within `index.html`. Uses CSS custom properties in `:root` for colors and easing curves.
+- **CSS**: Embedded in `<style>` within `index.html`. Uses CSS custom properties in `:root` for colors, spacing, and easing curves.
 - **JS**: Embedded in `<script>` at the end of `<body>`. Wrapped in an IIFE to avoid global scope pollution.
 - **Fonts**: Loaded via Google Fonts `@import` with `font-display:swap`.
 - **Responsive**: Uses `clamp()` for fluid typography, `svh` for viewport height, and a single breakpoint at `800px`.
@@ -26,14 +26,12 @@ The landing page is intentionally a single HTML file. Do not introduce a framewo
 
 ## Interaction system
 
-- **Pupil tracking**: `.pupil` translates toward cursor within `.orb-zone`.
-- **Core follow**: `.core` translates slightly toward cursor using individual `translate` property.
-- **Orb tilt**: `.orb-zone` rotates subtly based on cursor position for a "looking around" effect.
-- **Ambient light**: A radial gradient follows the cursor on the background layer.
-- **Guards**: All cursor interactions are disabled when `prefers-reduced-motion: reduce` is active.
+- **Ambient light**: A radial gradient follows the cursor on the background layer via CSS variables.
+- **Scroll progress**: A fixed top bar reflects reading progress.
+- **Section reveal**: IntersectionObserver triggers fade-in for `.section` elements.
 
 ## Animation choreography
 
-- **Loading screen**: 1.4s initialization sequence with progress bar.
-- **Entrance**: Staggered reveal animations on header, kicker, title, description, CTA, microcopy, label, and corner.
-- **Continuous**: Orb breathe, core spin, iris breathe, halo pulse, orbit rotations, grain, sweep, signal, and particle drift.
+- **Loading screen**: 800ms spinner fade-out.
+- **Continuous**: Animated dark gradient (`body::before`), grain overlay, and spinner rotation.
+- **Scroll**: Sections reveal with a subtle fade+translate when they enter the viewport.

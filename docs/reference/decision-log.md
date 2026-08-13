@@ -262,3 +262,17 @@ Keep this file focused on decisions that future agents need to know. Do not turn
 - Updated status greeting to reflect time of day.
 
 **Do not do:** Re‑introduce complex animations, external libraries, or heavy visual effects that detract from the clean, classy presentation.
+
+## 2026-08-13 — Sync code docs with Cinematic Dark redesign
+
+**Decision:** Update `docs/code/css-architecture.md`, `docs/code/js-behavior.md`, `docs/code/implementation.md`, and `docs/code/README.md` to match the new single-file Cinematic Dark implementation.
+
+**Reason:** Code docs were out of sync with the latest redesign (described orb system, old loading screen, particles, etc.). Accurate implementation docs are required for maintainability and future agent handoffs.
+
+**Changes:**
+- `css-architecture.md`: restored `--muted`/`--dim`, updated layer order (removed orb/particles; kept loader/grain/ambient/header/copy/scroll-progress), documented gradient/grain animations, updated breakpoint and mobile notes.
+- `js-behavior.md`: replaced orb/pupil/core modules with spinner loader, ambient cursor light, scroll progress, and section reveal.
+- `implementation.md`: updated interaction system and animation choreography to reflect current page.
+- `docs/code/README.md`: added current design direction note.
+
+**Do not do:** Leave code docs stale after design changes. Do not add external build tooling docs until architecture changes.

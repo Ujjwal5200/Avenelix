@@ -33,7 +33,7 @@ The repository is intentionally lightweight:
 - `sitemap.xml` — homepage sitemap.
 - `README.md` — project entry point.
 - `docs/` — durable project context.
-- `docs/code/` — implementation-specific documentation (CSS architecture, JS behavior, assets).
+- `docs/code/` — implementation-specific documentation (CSS architecture, JS behavior, assets) updated for Cinematic Dark redesign.
 - `docs/strategy/website-redesign-strategy.md` — comprehensive redesign plan with reference site analysis.
 
 ## Current website experience
