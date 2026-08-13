@@ -40,17 +40,21 @@ The repository is intentionally lightweight:
 
 The landing page now features:
 - Minimalist hero with large Space Grotesk title (capped at `7rem` for ultra-wide) and subtle accent‑colored radial glow.
-- Interactive 3D point cloud scene (fibonacci sphere) rendered on canvas, rotating with cursor movement for cinematic depth; reduces to 200 points on mobile and pauses when the tab is hidden.
+- Interactive 3D point cloud scene (fibonacci sphere) rendered on canvas, rotating with cursor movement for cinematic depth; reduces to 200 points on mobile and pauses when the tab is hidden. Includes subtle scroll-based parallax for added depth.
 - Canvas includes `role="img"` and `aria-label` for screen-reader accessibility.
 - Subtle animated dark gradient background creating a cinematic atmosphere.
 - Lightweight CSS spinner loader (no heavy animation).
-- Scroll‑progress bar at the top of the viewport.
-- Clean vision‑first sections (Vision, Direction, Contact) with refined spacing and typography; principle cards stagger in on scroll.
+- Scroll‑progress bar at the top of the viewport with a soft glow.
+- Clean vision‑first sections (Vision, Direction, Contact) with refined spacing and typography; principle cards stagger in on scroll and lift with an accent border on hover.
+- Direction list items brighten and shift on hover; contact link reveals an arrow on hover.
+- Primary CTA button has a soft glow on hover; footer brightens on hover.
+- Header gains a blurred translucent background on scroll.
 - Responsive layout for mobile, tablet, and desktop; dot navigation and marquee removed.
 - Particle canvas and cursor‑glow trail removed.
 - Time‑based status greeting in the header.
 - Ambient cursor-follow radial light (very subtle).
 - Header includes brand favicon mark.
+- Scroll position is preserved on page refresh via `sessionStorage`.
 - Full `prefers‑reduced‑motion` support: all animations hidden when requested.
 - Accessibility features: skip link, focus‑visible outlines, high contrast colors.
 

@@ -24,6 +24,7 @@ All JS is wrapped in an IIFE to avoid polluting the global scope.
 - Uses 400 points on desktop and 200 on mobile (`<800px`).
 - Points are projected with simple 3D rotation math and drawn as accent-colored circles with depth-based alpha.
 - Rotates smoothly toward the cursor position using eased interpolation.
+- Includes subtle scroll-based parallax (points shift with page scroll) using eased interpolation.
 - Pauses rendering on `visibilitychange` when the tab is hidden to save CPU/battery.
 - Skipped when `prefers-reduced-motion:reduce` is active.
 
@@ -37,6 +38,12 @@ All JS is wrapped in an IIFE to avoid polluting the global scope.
 - Uses `IntersectionObserver` to add `.visible` to `.section` elements when they enter the viewport.
 - Falls back to immediately showing all sections if the API is unavailable.
 - Skipped when `prefers-reduced-motion:reduce` is active.
+
+### 6. Scroll position persistence
+
+- Saves `window.scrollY` to `sessionStorage` on `beforeunload`.
+- Restores scroll position after load using `history.scrollRestoration = 'manual'` with a short timeout to avoid layout jumps.
+- Ensures the user returns to the same position after refresh.
 
 ## Accessibility
 

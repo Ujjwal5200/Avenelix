@@ -44,9 +44,10 @@ Add new tokens here when a value is repeated more than twice.
 
 ## Animation system
 
-- **Entrance**: `.loader` spinner fades out after 800ms. Sections fade in via IntersectionObserver.
+- **Entrance**: `.loader` spinner fades out after 800ms. Sections fade in via IntersectionObserver. Principle cards stagger with delayed transitions.
 - **Continuous**: Keyframe animations for gradient background shift, grain noise, and loader spin.
-- **Interaction**: Ambient cursor-follow radial light updates `--mx`/`--my` CSS variables on `pointermove`. 3D point cloud scene pauses when the tab is hidden (`visibilitychange`). 3D point cloud scene rotates based on cursor position via canvas rendering.
+- **Interaction**: Ambient cursor-follow radial light updates `--mx`/`--my` CSS variables on `pointermove`. 3D point cloud scene rotates based on cursor position and includes subtle scroll-based parallax. Header gains blurred background on scroll.
+- **Micro-interactions**: Principle cards lift and reveal accent border on hover. Direction list items shift and brighten. Contact link shows arrow on hover. Primary button glows on hover. Footer brightens on hover. Scroll progress bar glows.
 - **Reduced motion**: `prefers-reduced-motion:reduce` disables all animations and transitions, hides loader and ambient layers, and skips the 3D scene.
 
 ## Performance considerations

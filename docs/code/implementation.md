@@ -26,16 +26,18 @@ The landing page is intentionally a single HTML file. Do not introduce a framewo
 
 ## Interaction system
 
-- **3D point cloud scene**: A fibonacci sphere rendered on a full-screen canvas, rotating based on cursor position. Uses 400 points on desktop and 200 on mobile. Pauses when the tab is hidden.
+- **3D point cloud scene**: A fibonacci sphere rendered on a full-screen canvas, rotating based on cursor position. Uses 400 points on desktop and 200 on mobile. Includes subtle scroll-based parallax. Pauses when the tab is hidden.
 - **Ambient light**: A radial gradient follows the cursor on the background layer via CSS variables.
-- **Scroll progress**: A fixed top bar reflects reading progress.
-- **Section reveal**: IntersectionObserver triggers fade-in for `.section` elements.
+- **Scroll progress**: A fixed top bar reflects reading progress with a soft glow.
+- **Section reveal**: IntersectionObserver triggers fade-in for `.section` elements. Principle cards stagger in with delayed transitions.
 - **Brand mark**: Favicon SVG displayed next to the brand name in the fixed header.
+- **Scroll persistence**: Scroll position is saved to `sessionStorage` on unload and restored after load to prevent jump-to-bottom on refresh.
+- **Header scroll state**: Header gains a blurred translucent background after scrolling past 40px.
 
 ## Animation choreography
 
 - **Loading screen**: 800ms spinner fade-out.
 - **Continuous**: Animated dark gradient (`body::before`), grain overlay, and spinner rotation.
-- **3D scene**: Interactive point cloud rotates with eased interpolation toward cursor position; pauses on tab hide.
-- **Scroll**: Sections reveal with a subtle fade+translate when they enter the viewport.
-- **Principle cards**: Staggered reveal with delayed transitions inside `.section.visible`.
+- **3D scene**: Interactive point cloud rotates with eased interpolation toward cursor position; includes eased scroll parallax; pauses on tab hide.
+- **Scroll**: Sections reveal with a subtle fade+translate when they enter the viewport. Principle cards stagger with delayed transitions.
+- **Micro-interactions**: Principle cards lift and reveal accent border on hover. Direction list items shift and brighten. Contact link shows arrow on hover. Primary button glows on hover. Footer brightens on hover.

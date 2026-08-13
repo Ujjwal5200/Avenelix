@@ -4,7 +4,7 @@ This is the quick navigation index. Read this before opening individual files.
 
 | Path | Purpose | Change when |
 |---|---|---|
-| `index.html` | Current production coming-soon page: semantic HTML, SEO metadata, inline CSS, cinematic dark animated gradient, grain overlay, ambient cursor light, spinner loader, interactive 3D point cloud scene (canvas, mobile-adaptive, pause on tab hide), scroll-progress bar, typography-first hero (Space Grotesk + Inter) with brand mark, vision-first sections with staggered principle cards, time-based status greeting | Page UI, SEO metadata, animation, interaction, content, or structure changes |
+| `index.html` | Current production coming-soon page: semantic HTML, SEO metadata, inline CSS, cinematic dark animated gradient, grain overlay, ambient cursor light, spinner loader, interactive 3D point cloud scene (canvas, mobile-adaptive, pause on tab hide, scroll parallax), scroll-progress bar with glow, typography-first hero (Space Grotesk + Inter) with brand mark, vision-first sections with staggered principle cards and hover micro-interactions, time-based status greeting, scroll position persistence on refresh | Page UI, SEO metadata, animation, interaction, content, or structure changes |
 | `robots.txt` | Controls crawler access | Search crawling policy changes |
 | `sitemap.xml` | Declares canonical URLs for search discovery | Public URL/page structure changes |
 | `assets/README.md` | Rules for static assets | Asset architecture changes |
