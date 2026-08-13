@@ -4,7 +4,7 @@ This is the quick navigation index. Read this before opening individual files.
 
 | Path | Purpose | Change when |
 |---|---|---|
-| `index.html` | Current production coming-soon page: semantic HTML, SEO metadata, inline CSS, visual system, cursor interaction, scrollable vision sections | Page UI, SEO metadata, animation, interaction, content, or structure changes |
+| `index.html` | Current production coming-soon page: semantic HTML, SEO metadata, inline CSS, skeleton+loader, typography-first hero (Space Grotesk + Inter), orb background with parallax/wake, cursor glow, scroll-depth bar, dot nav, back-to-top, marquee, staggered reveals, time-based greeting, scrollable vision sections | Page UI, SEO metadata, animation, interaction, content, or structure changes |
 | `robots.txt` | Controls crawler access | Search crawling policy changes |
 | `sitemap.xml` | Declares canonical URLs for search discovery | Public URL/page structure changes |
 | `assets/README.md` | Rules for static assets | Asset architecture changes |

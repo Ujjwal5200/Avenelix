@@ -224,3 +224,22 @@ Keep this file focused on decisions that future agents need to know. Do not turn
 - Accessibility: reduced-motion hides loader and forces all reveals visible
 
 **Do not do:** Reintroduce the orb as central hero element. Add external frameworks or libraries. Add fake products or conversion-focused elements. Break the single-file architecture.
+
+## 2026-08-12 — P1–P4 UX improvement pass
+
+**Decision:** Implement the full P1–P4 UX recommendation set in one pass and keep the page fully responsive.
+
+**Reason:** The founder approved all priority tiers (P1 button/link feedback, P2 dot nav + staggered child reveals, P3 scroll parallax + display type + back-to-top + marquee + orb wake, P4 cursor glow + time-based greeting + tokens + skeleton) and asked to "do p1.2.3.4 all of them also make it responsive." These raise perceived quality and credibility during the pre-product phase without adding dependencies.
+
+**Changes:**
+- **P1** — `.btn:active` pressed state; `.contact-link` animated underline (pseudo-element width transition) replaces static border-on-hover.
+- **P2** — right-side `.dotnav` with active-state `IntersectionObserver` syncing to `#hero/#vision/#direction/#contact`; section children now reveal with staggered `transition-delay` (nth-child 1–5) instead of the whole block at once.
+- **P3** — hero orb subtle cursor parallax + "wake" (opacity `.5`→`.85` within proximity radius); `.cursor-glow` trailing radial highlight; `Space Grotesk` display font on titles; `.to-top` button shown after 400px scroll; `.marquee` ticker (duplicated track for seamless loop); `.scroll-depth` progress bar; header `.scrolled` compact padding.
+- Added subtle particle background (canvas) with floating particles reacting to cursor.
+- **P4** — time-based status greeting (morning/afternoon/evening/late); spacing tokens `--space-xl/--space-lg/--gutter`; skeleton loader (200ms shimmer) before the 1.8s loader.
+
+**Implementation notes:**
+- All of the above are guarded by `prefers-reduced-motion`: the media query forces `opacity:1`/`transform:none` and `display:none` on skeleton+loader; the JS skips parallax, glow, wake, marquee duplication, and uses `behavior:auto` for scroll-to-top.
+- Dot nav is hidden below 900px (touch users scroll naturally); back-to-top stays.
+
+**Do not do:** Add external animation libraries, a 3D globe, or blue gradients. Keep the single-file architecture. Do not make the orb wake or glow so strong that it reads as a generic AI template.

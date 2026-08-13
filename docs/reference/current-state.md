@@ -1,6 +1,6 @@
 # Avenelix Current State
 
-_Last updated: 2026-08-12_
+_Last updated: 2026-08-13 (P1–P4 UX pass + particles)_
 
 ## Status
 
@@ -40,23 +40,29 @@ The repository is intentionally lightweight:
 
 The current landing page has:
 
-- cinematic text-based loader with refined orb mark
-- editorial typographic hero with staggered word reveals
+- skeleton shimmer loader (200ms) then cinematic text-based loader with refined orb mark (1.8s)
+- editorial typographic hero with staggered word reveals (`Space Grotesk` display + `Inter` body, both via Google Fonts)
 - dark background with atmospheric depth (grid, grain, ambient cursor light)
-- abstract orb system in hero (refined, background-positioned with subtle parallax)
+- abstract orb system in hero (refined, background-positioned) with subtle cursor parallax and proximity "wake" (opacity lifts near the cursor)
 - multiple orbital rings with meditative motion
+- cursor glow trail (radial highlight following the pointer)
+- scroll-depth progress bar at the top of the viewport
+- right-side dot navigation (desktop) with active-section `IntersectionObserver`; hidden on mobile
+- back-to-top button shown after 400px scroll
+- marquee ticker between hero and vision sections
+- time-based header status greeting (morning / afternoon / evening / late)
 - scrollable vision-first sections
   - Vision: statement + 3 principle cards (Engineering / Product / Systems)
   - Direction: exploration areas + explicit "no products announced" note
-  - Contact: email + status line
-- responsive layout optimized for mobile, tablet, desktop
+  - Contact: email with animated underline + status line
+- staggered section-child reveals (nth-child 1–5 transition delays)
+- responsive layout optimized for mobile, tablet, desktop (dot nav hidden ≤900px)
 - contact action through `hello@avenelix.com`
-- Inter font loaded via Google Fonts
-- `prefers-reduced-motion` respected for all animations and interactions
+- CSS custom properties + spacing tokens (`--space-xl`, `--space-lg`, `--gutter`) for maintainability
+- `prefers-reduced-motion` respected for all animations and interactions (skeleton/loader hidden; reveals forced visible; JS interactions skipped)
 - visible `:focus-visible` styles for keyboard navigation
 - skip link for accessibility
 - favicon fallbacks (`apple-touch-icon`)
-- CSS custom properties for maintainability
 - `scroll-behavior:smooth` for navigation
 
 ## Current contact model
