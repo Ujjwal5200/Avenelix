@@ -291,3 +291,20 @@ Keep this file focused on decisions that future agents need to know. Do not turn
 - Updated `docs/code/css-architecture.md`, `docs/code/js-behavior.md`, and `docs/code/implementation.md` to include the scene layer and rendering logic.
 
 **Do not do:** Use external 3D libraries (Three.js/PlayCanvas) or heavy WebGL shaders that increase bundle size/complexity. Do not make the scene so busy that it distracts from typography.
+
+## 2026-08-13 — Refinements: brand mark, typography, stagger, accessibility, performance
+
+**Decision:** Apply targeted UX and performance refinements to the Cinematic Dark redesign: add brand mark to header, cap hero title size, stagger principle card reveals, improve canvas accessibility, reduce 3D point count on mobile, and pause the scene when the tab is hidden.
+
+**Reason:** Small, high-signal improvements that increase polish, brand consistency, and performance without adding complexity.
+
+**Changes:**
+- Header now includes the favicon SVG (`brand-mark`) next to the brand name.
+- Hero title `font-size` capped at `7rem` (was `8rem`) for better ultra-wide behavior.
+- Vision principle cards now stagger in with delayed transitions (`.section.visible .principle:nth-child(n)`).
+- Canvas has `role="img"` and `aria-label="3D point cloud background"` for screen readers.
+- 3D scene uses 200 points on mobile (`<800px`) and 400 on desktop.
+- Scene rendering is paused via `visibilitychange` when the tab is hidden to save CPU/battery.
+- Hero description copy refined for clarity.
+
+**Do not do:** Add heavy connection lines between points or WebGL shaders. Do not increase point count beyond 400 desktop / 200 mobile.

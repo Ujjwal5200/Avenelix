@@ -26,14 +26,16 @@ The landing page is intentionally a single HTML file. Do not introduce a framewo
 
 ## Interaction system
 
-- **3D point cloud scene**: A fibonacci sphere (400 points) rendered on a full-screen canvas, rotating based on cursor position.
+- **3D point cloud scene**: A fibonacci sphere rendered on a full-screen canvas, rotating based on cursor position. Uses 400 points on desktop and 200 on mobile. Pauses when the tab is hidden.
 - **Ambient light**: A radial gradient follows the cursor on the background layer via CSS variables.
 - **Scroll progress**: A fixed top bar reflects reading progress.
 - **Section reveal**: IntersectionObserver triggers fade-in for `.section` elements.
+- **Brand mark**: Favicon SVG displayed next to the brand name in the fixed header.
 
 ## Animation choreography
 
 - **Loading screen**: 800ms spinner fade-out.
 - **Continuous**: Animated dark gradient (`body::before`), grain overlay, and spinner rotation.
-- **3D scene**: Interactive point cloud rotates with eased interpolation toward cursor position.
+- **3D scene**: Interactive point cloud rotates with eased interpolation toward cursor position; pauses on tab hide.
 - **Scroll**: Sections reveal with a subtle fade+translate when they enter the viewport.
+- **Principle cards**: Staggered reveal with delayed transitions inside `.section.visible`.

@@ -27,6 +27,7 @@ Add new tokens here when a value is repeated more than twice.
 | Layer | Z-index | Purpose |
 |-------|---------|---------|
 | Scene canvas | 0 | Interactive 3D point cloud background |
+| Scene canvas | 0 | Interactive 3D point cloud background |
 | Loader | 2000 | Initialization screen |
 | Grain | 20 | Film grain texture |
 | Ambient | -1 | Cursor-follow radial light |
@@ -38,14 +39,14 @@ Add new tokens here when a value is repeated more than twice.
 
 - **Fluid typography**: `clamp()` for all text sizes.
 - **Viewport height**: `100svh` with `min-height:620px` fallback.
-- **Breakpoint**: Single breakpoint at `800px` for mobile layout switch.
+- **Breakpoint**: Single breakpoint at `800px` for mobile layout switch. 3D scene reduces point count on mobile.
 - **Mobile adjustments**: Center-align hero text, stack principles grid to single column, reduce glow intensity.
 
 ## Animation system
 
 - **Entrance**: `.loader` spinner fades out after 800ms. Sections fade in via IntersectionObserver.
 - **Continuous**: Keyframe animations for gradient background shift, grain noise, and loader spin.
-- **Interaction**: Ambient cursor-follow radial light updates `--mx`/`--my` CSS variables on `pointermove`. 3D point cloud scene rotates based on cursor position via canvas rendering.
+- **Interaction**: Ambient cursor-follow radial light updates `--mx`/`--my` CSS variables on `pointermove`. 3D point cloud scene pauses when the tab is hidden (`visibilitychange`). 3D point cloud scene rotates based on cursor position via canvas rendering.
 - **Reduced motion**: `prefers-reduced-motion:reduce` disables all animations and transitions, hides loader and ambient layers, and skips the 3D scene.
 
 ## Performance considerations

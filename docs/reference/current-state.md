@@ -39,16 +39,18 @@ The repository is intentionally lightweight:
 ## Current website experience
 
 The landing page now features:
-- Minimalist hero with large Space Grotesk title and subtle accent‑colored radial glow.
-- Interactive 3D point cloud scene (fibonacci sphere) rendered on canvas, rotating with cursor movement for cinematic depth.
+- Minimalist hero with large Space Grotesk title (capped at `7rem` for ultra-wide) and subtle accent‑colored radial glow.
+- Interactive 3D point cloud scene (fibonacci sphere) rendered on canvas, rotating with cursor movement for cinematic depth; reduces to 200 points on mobile and pauses when the tab is hidden.
+- Canvas includes `role="img"` and `aria-label` for screen-reader accessibility.
 - Subtle animated dark gradient background creating a cinematic atmosphere.
 - Lightweight CSS spinner loader (no heavy animation).
 - Scroll‑progress bar at the top of the viewport.
-- Clean vision‑first sections (Vision, Direction, Contact) with refined spacing and typography.
+- Clean vision‑first sections (Vision, Direction, Contact) with refined spacing and typography; principle cards stagger in on scroll.
 - Responsive layout for mobile, tablet, and desktop; dot navigation and marquee removed.
 - Particle canvas and cursor‑glow trail removed.
 - Time‑based status greeting in the header.
 - Ambient cursor-follow radial light (very subtle).
+- Header includes brand favicon mark.
 - Full `prefers‑reduced‑motion` support: all animations hidden when requested.
 - Accessibility features: skip link, focus‑visible outlines, high contrast colors.
 

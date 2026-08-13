@@ -20,9 +20,11 @@ All JS is wrapped in an IIFE to avoid polluting the global scope.
 
 ### 3. 3D point cloud scene
 
-- Renders a fibonacci sphere (400 points) on a fixed full-screen canvas (`#scene`).
+- Renders a fibonacci sphere on a fixed full-screen canvas (`#scene`).
+- Uses 400 points on desktop and 200 on mobile (`<800px`).
 - Points are projected with simple 3D rotation math and drawn as accent-colored circles with depth-based alpha.
 - Rotates smoothly toward the cursor position using eased interpolation.
+- Pauses rendering on `visibilitychange` when the tab is hidden to save CPU/battery.
 - Skipped when `prefers-reduced-motion:reduce` is active.
 
 ### 4. Scroll progress
