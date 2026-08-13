@@ -40,6 +40,7 @@ The repository is intentionally lightweight:
 
 The landing page now features:
 - Minimalist hero with large Space Grotesk title and subtle accent‑colored radial glow.
+- Interactive 3D point cloud scene (fibonacci sphere) rendered on canvas, rotating with cursor movement for cinematic depth.
 - Subtle animated dark gradient background creating a cinematic atmosphere.
 - Lightweight CSS spinner loader (no heavy animation).
 - Scroll‑progress bar at the top of the viewport.

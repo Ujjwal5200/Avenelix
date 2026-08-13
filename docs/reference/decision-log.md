@@ -276,3 +276,18 @@ Keep this file focused on decisions that future agents need to know. Do not turn
 - `docs/code/README.md`: added current design direction note.
 
 **Do not do:** Leave code docs stale after design changes. Do not add external build tooling docs until architecture changes.
+
+## 2026-08-13 — Add interactive 3D point cloud scene
+
+**Decision:** Add a vanilla JS + canvas 3D point cloud (fibonacci sphere) behind the hero to give an interactive, cinematic depth effect inspired by edolus.com.
+
+**Reason:** The founder wants the site to feel more impressive and aligned with high-end cinematic dark aesthetics. A lightweight, self-contained 3D point cloud adds depth and interactivity without external libraries or breaking the single-file constraint.
+
+**Changes:**
+- Added `<canvas id="scene" class="scene-canvas">` as a fixed background layer.
+- Implemented a 400-point fibonacci sphere rendered with 2D canvas, rotating based on `pointermove`.
+- Points use the brand accent color (`#d9ff8c`) with depth-based alpha and size.
+- Guarded by `prefers-reduced-motion:reduce`; scene is skipped when reduced motion is preferred.
+- Updated `docs/code/css-architecture.md`, `docs/code/js-behavior.md`, and `docs/code/implementation.md` to include the scene layer and rendering logic.
+
+**Do not do:** Use external 3D libraries (Three.js/PlayCanvas) or heavy WebGL shaders that increase bundle size/complexity. Do not make the scene so busy that it distracts from typography.

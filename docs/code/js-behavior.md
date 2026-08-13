@@ -18,12 +18,19 @@ All JS is wrapped in an IIFE to avoid polluting the global scope.
 - Uses `pointermove` on `document` for smooth tracking.
 - Guarded by `matchMedia('(prefers-reduced-motion: reduce)').matches`; disabled when user prefers reduced motion.
 
-### 3. Scroll progress
+### 3. 3D point cloud scene
+
+- Renders a fibonacci sphere (400 points) on a fixed full-screen canvas (`#scene`).
+- Points are projected with simple 3D rotation math and drawn as accent-colored circles with depth-based alpha.
+- Rotates smoothly toward the cursor position using eased interpolation.
+- Skipped when `prefers-reduced-motion:reduce` is active.
+
+### 4. Scroll progress
 
 - Updates `.scroll-progress` width based on scroll position.
 - Passive scroll listener for performance.
 
-### 4. Section reveal
+### 5. Section reveal
 
 - Uses `IntersectionObserver` to add `.visible` to `.section` elements when they enter the viewport.
 - Falls back to immediately showing all sections if the API is unavailable.
