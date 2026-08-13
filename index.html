@@ -81,7 +81,8 @@ body::before {
 @keyframes spin {to {transform: rotate(360deg);}}
 
 /* Header */
-.site-header {position: fixed; top: 0; left: 0; right: 0; padding: 20px var(--gutter); display: flex; justify-content: space-between; align-items: center; z-index: 100; mix-blend-mode: difference;}
+.site-header {position: fixed; top: 0; left: 0; right: 0; padding: 20px var(--gutter); display: flex; justify-content: space-between; align-items: center; z-index: 100; mix-blend-mode: difference; transition: background .4s, padding .4s, backdrop-filter .4s;}
+.site-header.scrolled { background: rgba(5,5,5,.8); backdrop-filter: blur(10px); }
 .brand-wrap{display:flex;align-items:center;gap:10px}
 .brand-mark{width:22px;height:22px;display:block;opacity:.85}
 .brand {font-size:13px; font-weight:700; letter-spacing:.18em; text-transform:uppercase;}
@@ -106,12 +107,21 @@ body::before {
 
 /* Principles */
 .principles {display:grid; grid-template-columns:repeat(3,1fr); gap:1px; margin-top:40px; background:var(--border);}
-.principle {background:var(--bg); padding:36px 32px; opacity:0; transform:translateY(16px); transition:background .3s, opacity .7s var(--ease-out), transform .7s var(--ease-out);}
+.principle {background:var(--bg); padding:36px 32px; opacity:0; transform:translateY(16px); transition:background .3s, opacity .7s var(--ease-out), transform .7s var(--ease-out); position: relative;}
 .section.visible .principle {opacity:1; transform:none;}
 .section.visible .principle:nth-child(1){transition-delay:.08s}
 .section.visible .principle:nth-child(2){transition-delay:.18s}
 .section.visible .principle:nth-child(3){transition-delay:.28s}
-.principle:hover {background:var(--card);}
+.principle::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0; width: 2px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transition: transform .3s var(--ease);
+}
+.principle:hover::before { transform: scaleY(1); }
+.principle:hover { transform: translateY(-4px); background:var(--card); }
 .principle-title {font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--fg); margin-bottom:12px; font-weight:600;}
 .principle-body {font-size:14px; line-height:1.7; color:var(--muted);}
 
@@ -270,6 +280,27 @@ footer {padding:48px var(--gutter); border-top:1px solid var(--border); display:
   }
   window.addEventListener('scroll', updateProgress, {passive:true});
   updateProgress();
+
+  // Scroll position persistence
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  const savedY = sessionStorage.getItem('avenelix_scroll');
+  if (savedY) {
+    setTimeout(() => window.scrollTo(0, parseInt(savedY, 10)), 100);
+  }
+  window.addEventListener('beforeunload', () => {
+    sessionStorage.setItem('avenelix_scroll', window.scrollY);
+  });
+
+  // Header scroll state
+  const header = document.querySelector('.site-header');
+  function updateHeader(){
+    const st = document.documentElement.scrollTop || window.scrollY;
+    if (header) header.classList.toggle('scrolled', st > 40);
+  }
+  window.addEventListener('scroll', updateHeader, {passive:true});
+  updateHeader();
   // Section reveal
   const sections = document.querySelectorAll('.section');
   if (!reduced && 'IntersectionObserver' in window) {
@@ -314,11 +345,18 @@ footer {padding:48px var(--gutter); border-top:1px solid var(--border); display:
     }
 
     let targetRotX = 0, targetRotY = 0;
+    let targetScrollY = 0, currentScrollY = 0;
     let rotX = 0, rotY = 0;
     document.addEventListener('pointermove', e => {
       targetRotY = (e.clientX / window.innerWidth - 0.5) * Math.PI;
       targetRotX = (e.clientY / window.innerHeight - 0.5) * Math.PI * 0.5;
     });
+
+    function updateScrollParallax(){
+      targetScrollY = window.scrollY || window.pageYOffset;
+    }
+    window.addEventListener('scroll', updateScrollParallax, {passive:true});
+    updateScrollParallax();
 
     function project(p) {
       let x = p.x * Math.cos(rotY) - p.z * Math.sin(rotY);
@@ -328,7 +366,9 @@ footer {padding:48px var(--gutter); border-top:1px solid var(--border); display:
       let z2 = y * Math.sin(rotX) + z * Math.cos(rotX);
       const fov = 600;
       const scale = fov / (fov + z2 + 400);
-      return { x: x * scale + width / 2, y: y2 * scale + height / 2, s: scale, z: z2 };
+      currentScrollY += (targetScrollY - currentScrollY) * 0.05;
+      const parallaxY = currentScrollY * 0.02;
+      return { x: x * scale + width / 2, y: y2 * scale + height / 2 + parallaxY, s: scale, z: z2 };
     }
 
     function draw() {
