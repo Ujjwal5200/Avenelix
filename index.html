@@ -75,10 +75,12 @@ body::before {
 }
 
 /* Loader */
-.loader {position: fixed; inset: 0; background: var(--bg); display: flex; align-items: center; justify-content: center; z-index: 2000; transition: opacity .6s var(--ease-out), visibility .6s;}
+.loader {position: fixed; inset: 0; background: var(--bg); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 24px; z-index: 2000; transition: opacity .6s var(--ease-out), visibility .6s;}
 .loader.done {opacity: 0; visibility: hidden; pointer-events: none;}
 .spinner {width: 36px; height: 36px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite;}
+.loader-text {font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:var(--dim); font-weight:500;}
 @keyframes spin {to {transform: rotate(360deg);}}
+@keyframes reveal {from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:none;}}
 
 /* Header */
 .site-header {position: fixed; top: 0; left: 0; right: 0; padding: 20px var(--gutter); display: flex; justify-content: space-between; align-items: center; z-index: 100; mix-blend-mode: difference; transition: background .4s, padding .4s, backdrop-filter .4s;}
@@ -89,10 +91,11 @@ body::before {
 
 /* Hero */
 .hero {min-height: 100svh; min-height: 620px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 0 var(--gutter); position: relative; z-index: 1;}
-.hero .kicker {color: var(--muted); font-size:12px; letter-spacing:.2em; text-transform:uppercase; margin-bottom:24px;}
-.title {font-family:"Space Grotesk", Inter, sans-serif; font-size: clamp(3rem,8vw,7rem); line-height:1; letter-spacing:-.03em; font-weight:800; margin:0 0 24px;}
-.desc {font-size: clamp(.95rem,1.5vw,1.1rem); line-height:1.7; color: var(--muted); max-width:560px; margin-bottom:32px;}
-.btn {display:inline-block; padding:.8rem 1.6rem; border-radius:8px; border:1px solid var(--border); background:transparent; color:var(--fg); font-size:13px; font-weight:500; text-decoration:none; transition:.2s var(--ease);}
+.hero .kicker {color: var(--muted); font-size:12px; letter-spacing:.2em; text-transform:uppercase; margin-bottom:24px; opacity:0; animation:reveal .8s var(--ease-out) .2s forwards;}
+.title {font-family:"Space Grotesk", Inter, sans-serif; font-size: clamp(3rem,8vw,7rem); line-height:1; letter-spacing:-.03em; font-weight:800; margin:0 0 24px; opacity:0; animation:reveal .8s var(--ease-out) .4s forwards;}
+.desc {font-size: clamp(.95rem,1.5vw,1.1rem); line-height:1.7; color: var(--muted); max-width:560px; margin-bottom:32px; opacity:0; animation:reveal .8s var(--ease-out) .6s forwards;}
+.btn {display:inline-block; padding:.8rem 1.6rem; border-radius:8px; border:1px solid var(--border); background:transparent; color:var(--fg); font-size:13px; font-weight:500; text-decoration:none; transition:.2s var(--ease); opacity:0; animation:reveal .8s var(--ease-out) .8s forwards;}
+.micro {font-size:10px; letter-spacing:.08em; color:var(--dim); margin-top:20px; opacity:0; animation:reveal .8s var(--ease-out) 1s forwards;}
 .btn:hover {border-color:var(--accent); color:var(--accent); transform:translateY(-2px);}
 .btn-primary {background:var(--fg); color:var(--bg); border-color:var(--fg); box-shadow: 0 0 0 rgba(217,255,140,0); transition: .3s var(--ease);}
 .btn-primary:hover {background:var(--accent); border-color:var(--accent); color:var(--bg); box-shadow: 0 0 20px rgba(217,255,140,.3);}
@@ -156,6 +159,7 @@ footer:hover { color: var(--fg); }
 @media(prefers-reduced-motion:reduce) {
   * {animation:none!important; transition:none!important;}
   .loader,.ambient {display:none!important;}
+  .hero .kicker,.title,.desc,.btn,.micro {opacity:1!important; animation:none!important;}
 }
 
 /* Grain overlay */
@@ -189,7 +193,7 @@ footer:hover { color: var(--fg); }
 <a href="#main" class="skip-link">Skip to main content</a>
 <canvas id="scene" class="scene-canvas" role="img" aria-label="3D point cloud background"></canvas>
 
-<div class="loader" id="loader"><div class="spinner"></div></div>
+<div class="loader" id="loader"><div class="spinner"></div><div class="loader-text">Initializing</div></div>
 <div class="ambient" id="ambient"></div>
 <div class="grain" aria-hidden="true"></div>
 
@@ -207,6 +211,7 @@ footer:hover { color: var(--fg); }
     <h1 class="title">Engineering<br>intelligent products<br>for what comes next.</h1>
     <p class="desc">Avenelix is an independent <b>AI &amp; software</b> venture taking useful problems from first prototype to production.</p>
     <a class="btn btn-primary" href="mailto:hello@avenelix.com">Get in touch</a>
+    <div class="micro">No noise. Just building.</div>
   </section>
 
   <section class="section" id="vision">
@@ -411,7 +416,23 @@ footer:hover { color: var(--fg); }
       }
     });
   }
-})();
+    if (!reduced) {
+      const heroEls = document.querySelectorAll('.hero .kicker, .hero .title, .hero .desc, .hero .btn, .hero .micro');
+      function updateHeroParallax(){
+        const scrollY = window.scrollY || window.pageYOffset;
+        if (scrollY > window.innerHeight) {
+          heroEls.forEach(el => el.style.transform = '');
+          return;
+        }
+        const progress = scrollY / window.innerHeight;
+        heroEls.forEach(el => {
+          el.style.transform = `translateY(${progress * 30}px)`;
+        });
+      }
+      window.addEventListener('scroll', updateHeroParallax, {passive:true});
+      updateHeroParallax();
+    }
+  })();
 </script>
 </body>
 </html>

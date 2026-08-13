@@ -8,7 +8,7 @@ All JS is wrapped in an IIFE to avoid polluting the global scope.
 
 ### 1. Loading screen
 
-- Shows a lightweight CSS spinner for ~800ms.
+- Shows a lightweight CSS spinner with "Initializing" label for ~800ms.
 - Adds `.done` class to fade out.
 - Hidden entirely when `prefers-reduced-motion:reduce` is active.
 
@@ -33,13 +33,19 @@ All JS is wrapped in an IIFE to avoid polluting the global scope.
 - Updates `.scroll-progress` width based on scroll position.
 - Passive scroll listener for performance.
 
-### 5. Section reveal
+### 5. Hero scroll parallax
+
+- After the loader fades, hero text elements (`.kicker`, `.title`, `.desc`, `.btn`, `.micro`) receive a subtle translate on scroll while they're in the viewport.
+- Stops when scroll passes `window.innerHeight`, restoring transform to the CSS animation's settled state.
+- Guarded by `prefers-reduced-motion` — skipped entirely for reduced-motion users.
+
+### 6. Section reveal
 
 - Uses `IntersectionObserver` to add `.visible` to `.section` elements when they enter the viewport.
 - Falls back to immediately showing all sections if the API is unavailable.
 - Skipped when `prefers-reduced-motion:reduce` is active.
 
-### 6. Scroll position persistence
+### 7. Scroll position persistence
 
 - Saves `window.scrollY` to `sessionStorage` on `beforeunload`.
 - Restores scroll position after load using `history.scrollRestoration = 'manual'` with a short timeout to avoid layout jumps.
