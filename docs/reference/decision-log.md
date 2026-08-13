@@ -246,16 +246,19 @@ Keep this file focused on decisions that future agents need to know. Do not turn
 
 ## 2026-08-13 — Full classy redesign
 
-**Decision:** Replace the existing landing page with a minimalist, typography‑first design that feels elegant and cinematic while staying within brand constraints.
+**Decision:** Replace the existing landing page with a minimalist, typography‑first design that feels elegant and cinematic while staying within brand constraints and the documented CSS architecture.
 
 **Reason:** The prior version, even after extensive UX enhancements, still appeared cluttered and failed to convey the desired classy aesthetic.
 
 **Changes:**
 - Removed marquee, particle canvas, dot navigation, and orbital rings.
 - Introduced a clean hero with large Space Grotesk title and subtle accent‑colored radial background glow.
-- Implemented a lightweight CSS spinner loader and optional skeleton placeholder.
+- Added a subtle animated dark gradient (`body::before`) for cinematic atmosphere.
+- Added ambient cursor-follow radial light and a light grain overlay for depth.
+- Implemented a lightweight CSS spinner loader (no heavy animation) with optional shimmer skeleton.
 - Added a scroll‑progress bar at the top.
-- Retained responsive layout, reduced‑motion support, skip link, SEO metadata, and vision‑first sections (Vision, Direction, Contact) with refined spacing and typography.
+- Retained responsive layout (breakpoint at `800px`, `100svh` with `620px` fallback), reduced‑motion support, skip link, SEO metadata, and vision‑first sections (Vision, Direction, Contact) with refined spacing and typography.
+- Aligned CSS custom properties with `docs/code/css-architecture.md` (`--muted`, `--dim` tokens restored).
 - Updated status greeting to reflect time of day.
 
 **Do not do:** Re‑introduce complex animations, external libraries, or heavy visual effects that detract from the clean, classy presentation.

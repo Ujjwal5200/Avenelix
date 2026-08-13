@@ -1,6 +1,6 @@
 # Avenelix Current State
 
-_Last updated: 2026-08-13 (P1–P4 UX pass + particles)_
+_Last updated: 2026-08-13 (Cinematic Dark redesign)_
 
 ## Status
 
@@ -38,45 +38,18 @@ The repository is intentionally lightweight:
 
 ## Current website experience
 
-## Updated website experience (classy redesign)
-
 The landing page now features:
 - Minimalist hero with large Space Grotesk title and subtle accent‑colored radial glow.
-- Lightweight CSS spinner loader (no heavy animation) with optional 200 ms shimmer skeleton.
+- Subtle animated dark gradient background creating a cinematic atmosphere.
+- Lightweight CSS spinner loader (no heavy animation).
 - Scroll‑progress bar at the top of the viewport.
 - Clean vision‑first sections (Vision, Direction, Contact) with refined spacing and typography.
 - Responsive layout for mobile, tablet, and desktop; dot navigation and marquee removed.
-- Cursor‑glow trail removed; particle canvas removed.
+- Particle canvas and cursor‑glow trail removed.
 - Time‑based status greeting in the header.
+- Ambient cursor-follow radial light (very subtle).
 - Full `prefers‑reduced‑motion` support: all animations hidden when requested.
 - Accessibility features: skip link, focus‑visible outlines, high contrast colors.
-
-The current landing page has:
-
-- skeleton shimmer loader (200ms) then cinematic text-based loader with refined orb mark (1.8s)
-- editorial typographic hero with staggered word reveals (`Space Grotesk` display + `Inter` body, both via Google Fonts)
-- dark background with atmospheric depth (grid, grain, ambient cursor light)
-- abstract orb system in hero (refined, background-positioned) with subtle cursor parallax and proximity "wake" (opacity lifts near the cursor)
-- multiple orbital rings with meditative motion
-- cursor glow trail (radial highlight following the pointer)
-- scroll-depth progress bar at the top of the viewport
-- right-side dot navigation (desktop) with active-section `IntersectionObserver`; hidden on mobile
-- back-to-top button shown after 400px scroll
-- marquee ticker between hero and vision sections
-- time-based header status greeting (morning / afternoon / evening / late)
-- scrollable vision-first sections
-  - Vision: statement + 3 principle cards (Engineering / Product / Systems)
-  - Direction: exploration areas + explicit "no products announced" note
-  - Contact: email with animated underline + status line
-- staggered section-child reveals (nth-child 1–5 transition delays)
-- responsive layout optimized for mobile, tablet, desktop (dot nav hidden ≤900px)
-- contact action through `hello@avenelix.com`
-- CSS custom properties + spacing tokens (`--space-xl`, `--space-lg`, `--gutter`) for maintainability
-- `prefers-reduced-motion` respected for all animations and interactions (skeleton/loader hidden; reveals forced visible; JS interactions skipped)
-- visible `:focus-visible` styles for keyboard navigation
-- skip link for accessibility
-- favicon fallbacks (`apple-touch-icon`)
-- `scroll-behavior:smooth` for navigation
 
 ## Current contact model
 
