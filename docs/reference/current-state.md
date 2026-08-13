@@ -38,6 +38,19 @@ The repository is intentionally lightweight:
 
 ## Current website experience
 
+## Updated website experience (classy redesign)
+
+The landing page now features:
+- Minimalist hero with large Space Grotesk title and subtle accent‑colored radial glow.
+- Lightweight CSS spinner loader (no heavy animation) with optional 200 ms shimmer skeleton.
+- Scroll‑progress bar at the top of the viewport.
+- Clean vision‑first sections (Vision, Direction, Contact) with refined spacing and typography.
+- Responsive layout for mobile, tablet, and desktop; dot navigation and marquee removed.
+- Cursor‑glow trail removed; particle canvas removed.
+- Time‑based status greeting in the header.
+- Full `prefers‑reduced‑motion` support: all animations hidden when requested.
+- Accessibility features: skip link, focus‑visible outlines, high contrast colors.
+
 The current landing page has:
 
 - skeleton shimmer loader (200ms) then cinematic text-based loader with refined orb mark (1.8s)
