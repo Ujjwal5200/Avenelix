@@ -21,6 +21,7 @@ This is the quick navigation index. Read this before opening individual files.
 | `docs/reference/decision-log.md` | Important decisions and why they were made | A meaningful decision is made or reversed |
 | `docs/seo/seo-strategy.md` | SEO/indexing/search strategy | Search strategy or SEO implementation changes |
 | `docs/reference/architecture.md` | Repository structure and scaling rules | Folder structure or scaling strategy changes |
+| `docs/code/` | Implementation-specific docs (CSS architecture, JS behavior, assets) | Implementation details change |
 | `docs/reference/file-map.md` | This navigation index | Any important file is added, removed, renamed, or repurposed |
 
 ## Agent rule
