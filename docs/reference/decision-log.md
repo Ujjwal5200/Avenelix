@@ -243,3 +243,19 @@ Keep this file focused on decisions that future agents need to know. Do not turn
 - Dot nav is hidden below 900px (touch users scroll naturally); back-to-top stays.
 
 **Do not do:** Add external animation libraries, a 3D globe, or blue gradients. Keep the single-file architecture. Do not make the orb wake or glow so strong that it reads as a generic AI template.
+
+## 2026-08-13 — Full classy redesign
+
+**Decision:** Replace the existing landing page with a minimalist, typography‑first design that feels elegant and cinematic while staying within brand constraints.
+
+**Reason:** The prior version, even after extensive UX enhancements, still appeared cluttered and failed to convey the desired classy aesthetic.
+
+**Changes:**
+- Removed marquee, particle canvas, dot navigation, and orbital rings.
+- Introduced a clean hero with large Space Grotesk title and subtle accent‑colored radial background glow.
+- Implemented a lightweight CSS spinner loader and optional skeleton placeholder.
+- Added a scroll‑progress bar at the top.
+- Retained responsive layout, reduced‑motion support, skip link, SEO metadata, and vision‑first sections (Vision, Direction, Contact) with refined spacing and typography.
+- Updated status greeting to reflect time of day.
+
+**Do not do:** Re‑introduce complex animations, external libraries, or heavy visual effects that detract from the clean, classy presentation.
