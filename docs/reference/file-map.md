@@ -1,38 +1,24 @@
 # File Map
 
-This is the quick navigation index. Read this before opening individual files.
+| Path | Purpose |
+|---|---|
+| `index.html` | Semantic page structure, SEO metadata and script/style entry points |
+| `css/style.css` | Visual system, responsive layout, orbital presentation and UI transitions |
+| `js/main.js` | Locomotive Scroll, GSAP transitions, Three.js particles, orbital motion and pointer interaction |
+| `robots.txt` | Crawler rules |
+| `sitemap.xml` | Search discovery |
+| `assets/` | Brand/static assets |
+| `docs/agent-handoff.md` | Compact context for future agents |
+| `docs/animation-system.md` | Animation design and performance quality bar |
+| `docs/locomotive-scroll.md` | Smooth-scroll architecture and offsets |
+| `docs/reference/architecture.md` | Repository structure and scaling rules |
+| `docs/reference/current-state.md` | Current site/deployment state |
+| `docs/reference/decision-log.md` | Durable technical/strategic decisions |
+| `docs/code/` | Implementation reference documentation |
 
-| Path | Purpose | Change when |
-|---|---|---|
-| `index.html` | Current production coming-soon page: semantic HTML, SEO metadata, inline CSS, cinematic dark animated gradient, grain overlay, ambient cursor light, spinner loader, interactive 3D point cloud scene (canvas, mobile-adaptive, pause on tab hide, scroll parallax), scroll-progress bar with glow, typography-first hero (Space Grotesk + Inter) with brand mark, vision-first sections with staggered principle cards and hover micro-interactions, time-based status greeting, scroll position persistence on refresh | Page UI, SEO metadata, animation, interaction, content, or structure changes |
-| `robots.txt` | Controls crawler access | Search crawling policy changes |
-| `sitemap.xml` | Declares canonical URLs for search discovery | Public URL/page structure changes |
-| `assets/README.md` | Rules for static assets | Asset architecture changes |
-| `assets/brand/favicon.svg` | Canonical Avenelix favicon/brand mark | Brand mark changes |
-| `README.md` | Fast repository orientation for humans and agents | Stack, entry points, or major workflow changes |
-| `LICENSE` | Legal license for the repository | Only when licensing changes |
-| `docs/agent-handoff.md` | Compact context for a new chat/agent | Current goals, state, or working assumptions change |
-| `docs/strategy/vision.md` | What Avenelix is intended to become | Vision or strategic direction changes |
-| `docs/reference/current-state.md` | What exists right now and what is already configured | Infrastructure, deployment, or product stage changes |
-| `docs/strategy/technical-approach.md` | Current technical approach and constraints | Architecture or technology decisions change |
-| `docs/brand/brand-and-ux.md` | Visual identity, interaction philosophy, and design constraints | Brand/UI direction changes |
-| `docs/strategy/roadmap.md` | Near-term and longer-term sequence | Priorities or milestones change |
-| `docs/strategy/website-redesign-strategy.md` | Comprehensive redesign strategy and wireframe plan | Design direction or site structure changes |
-| `docs/reference/decision-log.md` | Important decisions and why they were made | A meaningful decision is made or reversed |
-| `docs/seo/seo-strategy.md` | SEO/indexing/search strategy | Search strategy or SEO implementation changes |
-| `docs/reference/architecture.md` | Repository structure and scaling rules | Folder structure or scaling strategy changes |
-| `docs/code/` | Implementation-specific docs (CSS architecture, JS behavior, assets) | Implementation details change |
-| `docs/reference/file-map.md` | This navigation index | Any important file is added, removed, renamed, or repurposed |
-
-## Agent rule
-
-If you are a new agent/thread, start with this order:
-
+## Agent start order
 1. `README.md`
 2. `docs/agent-handoff.md`
 3. `docs/reference/current-state.md`
-4. `docs/strategy/vision.md`
-5. `docs/reference/architecture.md`
-6. Open the specific implementation file only after understanding the above.
-
-After a strategic or architectural change, update the relevant docs in the same work session. Do not let implementation drift away from documented intent.
+4. `docs/reference/architecture.md`
+5. Relevant implementation/docs files
