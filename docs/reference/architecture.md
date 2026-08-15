@@ -1,81 +1,38 @@
 # Repository Architecture
 
 ## Principle
-
-Keep the repository **simple now, scalable later**. Avenelix is currently a static coming-soon site, so do not introduce a framework, build system, component library, or unnecessary folders until the product actually needs them.
+Keep the repository simple now, scalable later. The landing page remains static, but presentation code is separated so animation and styling can evolve safely.
 
 ## Current structure
-
 ```text
 Avenelix/
-├── index.html                 # Production entry page: HTML + page CSS + small interaction JS
-├── robots.txt                 # Search crawler rules
-├── sitemap.xml                # Search discovery map
-├── README.md                  # Repository-level orientation
-├── LICENSE                    # Project license
+├── index.html                 # Semantic production entry page
+├── css/
+│   └── style.css              # Design system, responsive layout and visual effects
+├── js/
+│   └── main.js                # Locomotive Scroll, GSAP, Three.js and interaction logic
+├── robots.txt
+├── sitemap.xml
 ├── assets/
-│   ├── README.md              # Asset directory rules
-│   └── brand/
-│       └── favicon.svg        # Canonical Avenelix brand mark
+│   └── brand/favicon.svg
 └── docs/
-    ├── README.md              # Documentation map
-    ├── agent-handoff.md       # Compact context for new agents
-    ├── strategy/              # Business and product strategy
-    │   ├── README.md
-    │   ├── vision.md
-    │   ├── roadmap.md
-    │   └── technical-approach.md
-    ├── brand/                 # Visual identity and UX direction
-    │   ├── README.md
-    │   └── brand-and-ux.md
-    ├── reference/             # Infrastructure, decisions, and status
-    │   ├── README.md
-    │   ├── current-state.md
-    │   ├── architecture.md    # This file: repository structure and scaling rules
-    │   ├── decision-log.md
-    │   └── file-map.md
-    ├── seo/                   # Search engine configuration
-    │   ├── README.md
-    │   ├── seo-strategy.md
-    │   ├── robots.md
-    │   └── sitemap.md
-    ├── llm/                   # LLM/agent operating instructions
-    │   └── ...
-    └── code/                  # Implementation-specific documentation
-        └── ...
+    └── ...
 ```
 
-## Why `index.html` stays at root
+## Motion architecture
+- Locomotive Scroll 5.0.1 is the sole smooth-scroll engine; do not run Lenis separately.
+- GSAP handles entrance/reveal and orbital choreography.
+- Three.js is decorative and disposable; content must work without WebGL.
+- Desktop uses smooth scrolling; tablet/phone use native touch scrolling.
+- Scroll offsets and per-element `data-scroll-*` attributes control transition timing.
+- `prefers-reduced-motion` disables motion.
 
-Vercel currently serves this as a simple static site. Keeping `index.html`, `robots.txt`, and `sitemap.xml` at the root is deliberate: they are deployment/search entry points, not general application files.
+## Why code is separated
+The previous single-file implementation became difficult to modify safely as the animation system grew. HTML, CSS and JS are now independent without introducing a framework or build system. This is a deliberate maintainability improvement, not an invitation to add unnecessary architecture.
 
-## Planned scaling path
-
-Do not create these directories until they have real content:
-
-```text
-src/                 # only when application code becomes substantial
-  components/        # reusable UI
-  pages/             # multiple pages/routes
-  lib/               # shared utilities/integrations
-  styles/            # shared CSS/design tokens
-public/              # only if the chosen framework/build setup needs it
-api/                 # only when server-side endpoints are introduced
-```
-
-When the full product begins, migrate deliberately rather than mixing framework code into the current landing page.
-
-## File placement rules
-
-1. Root = deployment entry points and repository-level documentation only.
-2. `assets/` = static visual/brand files.
-3. `docs/` = strategy, decisions, architecture, handoff, and planning context.
-4. Never create random files in the root for experiments; put experiments in a clearly named temporary branch or documented area.
-5. Every new meaningful directory gets a `README.md` explaining its purpose and rules.
-6. Every new important file must be added to `docs/reference/file-map.md` with a one-line purpose.
-7. Do not split code into many files just for the appearance of architecture. Split when reuse, maintainability, testing, or scale justifies it.
-8. Before a structural change, update this document first or in the same change.
-
-## Six-to-seven-month target
-
-The repository should evolve from a **single static landing page** into a clean product codebase without accumulating accidental complexity. The exact framework and backend architecture should be chosen when the actual product requirements are known, not guessed in advance.
+## Rules
+1. Keep deployment entry points at root.
+2. Reusable visual assets stay under `assets/`.
+3. Page styling belongs in `css/`; interaction/motion belongs in `js/`.
+4. Do not add a framework until product requirements justify it.
+5. Update this file and `docs/reference/file-map.md` when structure changes.
