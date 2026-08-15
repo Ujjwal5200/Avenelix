@@ -1,0 +1,55 @@
+:root{
+  --canvas-0:#040505;
+  --canvas-1:#070907;
+  --canvas-2:#0a0d0a;
+  --surface-1:rgba(11,14,11,.72);
+  --surface-2:rgba(16,21,16,.78);
+  --text-1:#f4f7f1;
+  --text-2:#a0a89f;
+  --text-3:#626a61;
+  --brand-1:#d9ff8c;
+  --brand-2:#a9f6a0;
+  --brand-3:#69d6ad;
+  --signal:#e8ffb8;
+  --hairline:rgba(217,255,140,.10);
+  --glass-border:rgba(220,255,205,.12);
+  --hero-a:rgba(217,255,140,.105);
+  --hero-b:rgba(92,190,143,.045);
+  --focus-a:rgba(105,214,173,.075);
+  --focus-b:rgba(217,255,140,.035);
+  --direction-a:rgba(169,246,160,.06);
+  --direction-b:rgba(217,255,140,.025);
+  --contact-a:rgba(232,255,184,.07);
+}
+html,body{background:var(--canvas-0)}
+body{color:var(--text-1);background:
+  radial-gradient(80rem 55rem at 82% 12%,var(--hero-a),transparent 58%),
+  radial-gradient(55rem 45rem at 12% 88%,rgba(105,214,173,.025),transparent 60%),
+  var(--canvas-0)}
+body:before{background:
+  radial-gradient(45rem 35rem at 72% 38%,var(--hero-b),transparent 68%),
+  radial-gradient(40rem 32rem at 20% 75%,rgba(169,246,160,.018),transparent 70%)}
+/* Each section gets a distinct atmosphere, but all gradients stay inside the Avenelix green spectrum. */
+.section{isolation:isolate}
+.section:after{content:"";position:absolute;z-index:-1;pointer-events:none;inset:8% -8% 0;background:radial-gradient(50rem 26rem at 14% 45%,var(--section-a,transparent),transparent 70%),radial-gradient(42rem 30rem at 82% 65%,var(--section-b,transparent),transparent 72%);opacity:.85;filter:blur(12px)}
+.reveal-section:nth-of-type(1){--section-a:var(--focus-a);--section-b:var(--focus-b)}
+.reveal-section:nth-of-type(2){--section-a:var(--direction-a);--section-b:rgba(105,214,173,.025)}
+.reveal-section:nth-of-type(3){--section-a:var(--contact-a);--section-b:rgba(105,214,173,.018)}
+.hero{position:relative;isolation:isolate}
+.hero:after{content:"";position:absolute;z-index:-1;left:-12%;top:18%;width:62%;height:62%;pointer-events:none;background:radial-gradient(ellipse at center,var(--hero-a),transparent 68%);filter:blur(24px);opacity:.8}
+/* Prefer perceptual interpolation where supported; fallback is provided by the earlier solid/rgba layers. */
+@supports (background:linear-gradient(in oklch,red,blue)){
+  .hero:after{background:radial-gradient(ellipse at center in oklch,rgba(217,255,140,.16),rgba(105,214,173,.035) 42%,transparent 72%)}
+  .section:after{background:radial-gradient(50rem 26rem at 14% 45% in oklch,var(--section-a),transparent 70%),radial-gradient(42rem 30rem at 82% 65% in oklch,var(--section-b),transparent 72%)}
+}
+.glass-surface,.principle,header.scrolled{background:linear-gradient(135deg,rgba(255,255,255,.035),rgba(255,255,255,.012)),var(--surface-1);border-color:var(--glass-border)}
+header.scrolled{box-shadow:0 10px 50px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.035)}
+.principle{box-shadow:inset 0 1px 0 rgba(255,255,255,.025),0 20px 70px rgba(0,0,0,.13)}
+.label{color:var(--brand-2)}
+.btn{box-shadow:0 8px 32px rgba(217,255,140,.08)}
+.btn:hover{box-shadow:0 18px 55px rgba(105,214,173,.10),0 0 0 1px rgba(217,255,140,.18)}
+.contact:hover{color:var(--signal)}
+.scroll-progress:after{background:linear-gradient(90deg,rgba(105,214,173,.1),var(--brand-1),var(--signal))}
+.ambient{background:radial-gradient(circle 300px at var(--mx) var(--my),rgba(217,255,140,.085),rgba(105,214,173,.025) 34%,transparent 72%)}
+@media(max-width:640px){body{background:radial-gradient(34rem 30rem at 70% 14%,rgba(217,255,140,.07),transparent 60%),var(--canvas-0)}.hero:after{left:-30%;width:100%;opacity:.55}.section:after{inset:8% -20% 0;opacity:.55}}
+@media(prefers-reduced-motion:reduce){.hero:after,.section:after{filter:none}}
