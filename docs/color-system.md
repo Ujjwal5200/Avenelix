@@ -1,7 +1,7 @@
 # Avenelix Color System
 
 ## Direction
-Avenelix should not use generic multi-color gradients. The visual identity is a near-black technical canvas with a restrained green spectrum that reinforces the orbital/AI-system concept.
+Avenelix uses a near-black technical canvas with a restrained lime/mint signal spectrum. It should feel like a production technology studio, not a generic neon/Web3 gradient site.
 
 ## Palette
 - Canvas: `#040505` / `#070907` / `#0a0d0a`
@@ -20,18 +20,25 @@ Avenelix should not use generic multi-color gradients. The visual identity is a 
 - Focus: lime + mint, slightly cooler.
 - Direction: softer mint/green atmosphere.
 - Contact: pale signal highlight, still on the same dark canvas.
-- Gradients should support hierarchy and depth, not compete with typography or the orbital visual.
+- Gradients support hierarchy and depth; they must not compete with typography or the orbital visual.
 - Use OKLCH interpolation where supported, with RGBA fallbacks.
 
 ## Glass
 Use glass only for navigation and selected interactive surfaces. Keep transparency low, borders subtle, and blur restrained. Avoid making every section/card look like glass.
 
+## Responsive quality bar
+- Desktop/laptop: full orbital depth, particles, magnetic/cursor interactions and smooth scrolling where pointer input supports them.
+- Tablet: reduce visual density and use native-feeling touch scrolling.
+- Phone: preserve the orbital identity and hierarchy while reducing particle count, blur, gradient intensity and interaction complexity.
+- Never let decorative effects obscure readable content.
+- Respect `prefers-reduced-motion`.
+
+## Entrance behavior
+The preloader uses deterministic staged progress so fast page loads do not jump from an early number directly to the exit. Status phases are `CALIBRATING` → `CONNECTING` → `RENDERING` → `READY`. It has a hard fallback and never blocks the site indefinitely.
+
 ## Engineering constraints
 - Preserve contrast and readability.
 - Avoid saturated neon backgrounds.
-- Keep gradients low-cost CSS; reserve shader/post-processing gradients for the WebGL layer when they provide a measurable visual benefit.
+- Keep gradients low-cost CSS; reserve shader/post-processing gradients for WebGL when they provide a real visual benefit.
 - Test color appearance on OLED/mobile and standard LCD displays.
-- Respect reduced-motion; color atmosphere may remain static but should not animate aggressively.
-
-## Rationale
-The direction follows the broader production-studio principle of a coherent art direction rather than effect accumulation. Awwwards' current directories explicitly categorize WebGL, GSAP, scrolling, transitions, responsive design and typography as distinct craft dimensions; premium work benefits from a consistent visual system rather than unrelated effects. Three.js supports custom post-processing/shader passes when a future visual layer needs them.
+- Do not use animation as a prerequisite for content visibility.
