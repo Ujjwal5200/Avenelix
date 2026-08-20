@@ -1,0 +1,3 @@
+export const metadata = { title: 'Technology', description: 'AI, software, data and infrastructure capabilities at Avenelix.' };
+const items=[['AI','LLMs, retrieval, agents, evaluation and inference systems.'],['SOFTWARE','Web applications, APIs, interfaces and production architecture.'],['DATA','Pipelines, analytics, retrieval and decision systems.'],['INFRASTRUCTURE','Cloud, deployment, observability and developer platforms.']];
+export default function TechnologyPage(){return <main className="inner-page"><p className="mono">03 · TECHNOLOGY</p><h1>Engineering across the whole system.</h1><div className="page-stack">{items.map(([title,body])=><section className="page-block" key={title}><span className="mono">{title}</span><p>{body}</p></section>)}</div></main>}
