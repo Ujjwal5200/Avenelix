@@ -22,6 +22,8 @@ declare module 'locomotive-scroll' {
     on(event: 'scroll', callback: (args: LocomotiveScrollEvent) => void): void;
     update(): void;
     scrollTo(target: string | number | HTMLElement, options?: Record<string, unknown>): void;
+    stop(): void;
+    start(): void;
     destroy(): void;
     raf(time: number): void;
   }
