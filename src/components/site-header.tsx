@@ -11,7 +11,7 @@ export function SiteHeader(){
   useEffect(()=>{const onScroll=()=>setScrolled(window.scrollY>24); window.addEventListener('scroll',onScroll,{passive:true}); return()=>window.removeEventListener('scroll',onScroll)},[]);
   return <header className={`site-nav${scrolled?' is-scrolled':''}${open?' menu-open':''}`}>
     <Link className="brand" href="/" aria-label="Avenelix home">AVENELIX<span className="brand-dot" aria-hidden="true" /></Link>
-    <nav className="nav-links" aria-label="Primary navigation">{links.slice(0,4).map(([label,href])=><Link key={href} href={href}><span>{label}</span></Link>)}</nav>
+    <nav className="nav-links" aria-label="Primary navigation">{links.slice(0,4).map(([label,href],index)=><Link key={href} href={href}><span className="nav-index">0{index+1}</span><span>{label}</span></Link>)}</nav>
     <span className="nav-meta mono">AI · SOFTWARE · SYSTEMS</span>
     <button className="menu-button" aria-expanded={open} aria-controls="mobile-navigation" onClick={()=>setOpen(v=>!v)}><span>{open?'Close':'Menu'}</span><i aria-hidden="true" /></button>
     <div id="mobile-navigation" className="mobile-menu" aria-hidden={!open}>
