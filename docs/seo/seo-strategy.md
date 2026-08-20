@@ -1,80 +1,82 @@
 # Avenelix SEO Strategy
 
-_Last updated: 2026-08-11_
+_Last updated: 2026-08-20_
 
 ## Goal
 
 For branded searches such as `Avenelix`, `avenelix`, and `Avenelix AI`, the canonical site `https://avenelix.com/` should become the strongest and most obvious result.
 
-A top position cannot be guaranteed by SEO changes alone. Search engines rank pages using many signals, including relevance, crawlability, content quality, links/authority, freshness and search-engine-specific systems.
+A top position cannot be guaranteed by metadata alone. Crawlability, useful content, authority, links, freshness and Google's systems all matter.
 
-## Current technical SEO audit
+## Current technical SEO implementation
 
-The current homepage has the important foundations in place:
+`index.html` now contains:
 
-- descriptive `<title>` containing the brand and category;
-- useful meta description;
+- descriptive title and meta description;
 - `robots` allowing indexing;
-- canonical URL set to `https://avenelix.com/`;
-- Open Graph metadata;
-- Twitter card metadata;
-- `Organization` structured data;
+- canonical URL;
+- Open Graph and Twitter metadata;
 - `WebSite` structured data naming `Avenelix`;
+- `Organization` structured data with the 512×512 brand logo;
 - semantic H1/headline content;
-- `robots.txt` allowing crawling and referencing the sitemap;
-- `sitemap.xml` containing the canonical homepage;
-- favicon reference under the structured assets directory.
+- root favicon references;
+- web manifest reference.
 
-The current technical foundation is sufficient for the coming-soon stage. Do not add spammy keyword stuffing or `meta keywords`.
+Root deployment files:
 
-## Canonical URL
+- `/robots.txt` — crawl rules and sitemap reference;
+- `/sitemap.xml` — canonical homepage;
+- `/favicon.svg` — stable 512×512 square favicon;
+- `/assets/brand/logo.svg` — crawlable organization/OG logo.
 
-Primary URL:
+## Favicon / Google result icon
 
-`https://avenelix.com/`
+Google can use a site's favicon in organic search results, but does not guarantee that it will display. Current implementation follows Google's requirements: square 1:1 artwork, stable URL, crawlable home page and crawlable favicon. Google recommends a favicon larger than 48×48px; Avenelix exposes a 512×512 SVG. After deployment, use Search Console URL Inspection to request a recrawl. Google's favicon processing can take days to weeks. citeturn1search4
 
-Keep `www.avenelix.com` redirected to the apex domain. Do not change the canonical domain again unless there is a real reason.
+The browser favicon and the Organization `logo` are separate concepts. The favicon is the small site icon shown beside a result; Organization structured data helps Google understand the preferred organizational logo. citeturn1search0
 
-## Brand-ranking strategy
+## Site name
 
-Technical SEO is necessary but is not enough for a new branded domain. The highest-value actions are:
-
-1. Keep the exact brand name `Avenelix` consistent across the homepage, title, site-name structured data, social profiles and legitimate public references.
-2. Keep one canonical homepage URL and redirect `www` to the apex domain.
-3. Keep Google Search Console verified and submit the canonical sitemap.
-4. Add/verify the site in Bing Webmaster Tools and submit the sitemap there.
-5. Allow search engines to crawl the site and avoid accidental `noindex` or blocking rules.
-6. Obtain a small number of genuine, relevant links/citations to `avenelix.com` from places where the brand actually exists (for example GitHub and legitimate professional profiles). Never buy spammy backlinks.
-7. When Avenelix has real substance, publish useful pages/content that naturally establish what Avenelix does. Do not manufacture thin pages purely for rankings.
-8. Monitor Search Console/Bing performance instead of repeatedly changing metadata without evidence.
-
-## Current stage: coming soon
-
-Do not create artificial SEO pages just to increase indexed URLs. A one-page coming-soon site has limited topical depth by design. Once Avenelix has real products, projects, services or writing worth publishing, expand the site naturally and update the sitemap.
-
-## Google-specific note
-
-The homepage includes `WebSite` structured data with:
+The homepage uses `WebSite` structured data with:
 
 - `name`: `Avenelix`
+- `alternateName`: `Avenelix AI`
 - `url`: `https://avenelix.com/`
 
-This helps Google understand the preferred site name. It does **not** guarantee ranking position.
+Google's site-name system is automated, but `WebSite` structured data is the preferred way to indicate the desired site name. citeturn1search3
 
-## Brave-specific note
+## Brand-ranking priorities
 
-Brave Search uses an independent search index. Google indexing therefore does not automatically mean immediate Brave ranking. Brave's crawler needs to discover and index the site independently. The current `robots.txt` is crawl-friendly.
+1. Keep `Avenelix` consistent across the homepage, title, structured data, social profiles and legitimate public references.
+2. Keep `https://avenelix.com/` as the only canonical homepage URL.
+3. Keep Google Search Console verified and submit `/sitemap.xml`.
+4. Verify the homepage and request recrawling after meaningful deployments.
+5. Add a small number of genuine, relevant public references/links to the domain.
+6. Add useful product, project, service or writing pages only when there is real substance.
+7. Monitor Search Console rather than repeatedly changing metadata without evidence.
+
+Google treats sitemap submission as a discovery hint, not a ranking guarantee. citeturn0search6
+
+## Content strategy
+
+The current site is still coming-soon. Do not manufacture SEO pages, keyword-stuffed copy or fake services. When Avenelix has real products/projects, build descriptive pages around those entities and connect them with normal HTML links. Google explicitly recommends crawlable `<a href>` links and useful anchor text. citeturn0search3
 
 ## What not to do
 
-- Do not stuff `Avenelix` into every sentence.
-- Do not create fake pages just to occupy search results.
-- Do not buy low-quality backlinks.
-- Do not create dozens of near-duplicate pages.
-- Do not repeatedly change the canonical domain.
-- Do not repeatedly request indexing after every tiny visual change.
-- Do not sacrifice the visitor experience for SEO tricks.
+- No `meta keywords`.
+- No keyword stuffing.
+- No fake product pages.
+- No purchased/spam backlinks.
+- No duplicate near-identical pages.
+- No repeated canonical-domain changes.
+- No sacrificing performance or UX for SEO tricks.
 
-## Success criterion
+## Operational checklist
 
-The practical target is not "force Google to rank #1 tomorrow." The target is to build enough clear brand identity and authority that a search for the unique brand `Avenelix` naturally returns `avenelix.com` as the primary result across Google and Brave.
+- [ ] Deploy current `main` to Vercel.
+- [ ] Verify `https://avenelix.com/` loads normally.
+- [ ] Verify `/favicon.svg`, `/assets/brand/logo.svg`, `/robots.txt`, and `/sitemap.xml` return 200.
+- [ ] In Search Console, run URL Inspection on the homepage and request indexing.
+- [ ] Submit `/sitemap.xml` in Search Console.
+- [ ] Validate JSON-LD with a schema validator.
+- [ ] Recheck the Google result after Google recrawls; favicon appearance is not immediate or guaranteed.
