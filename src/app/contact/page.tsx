@@ -1,0 +1,2 @@
+export const metadata = { title: 'Contact', description: 'Start a conversation with Avenelix about software, AI and systems.' };
+export default function ContactPage(){return <main className="inner-page contact-page"><p className="mono">05 · CONTACT</p><h1>Let's build something difficult.</h1><p className="lead">Tell us what you are trying to build, what is blocking you, and what a successful outcome looks like.</p><a className="contact-link" href="mailto:hello@avenelix.com">hello@avenelix.com ↗</a></main>}
