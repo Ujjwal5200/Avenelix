@@ -1,73 +1,65 @@
 # Repository Architecture
 
 ## Principle
-Keep the repository simple now, scalable later. The landing page remains framework-free and deployable as static files, but presentation concerns are separated so visual work can evolve without turning `index.html` into a monolith.
+Keep the repository simple now, scalable later. The landing page is framework-free and deployable as static files, with HTML, CSS and JS separated so visual work can evolve safely.
 
 ## Current structure
 
 ```text
 Avenelix/
-├── index.html                 # Semantic markup, SEO metadata and asset entry points
+├── index.html
 ├── css/
-│   └── style.css              # Design system, responsive layout and visual effects
-├── js/
-│   └── main.js                # Motion orchestration, scrolling, Three.js and fallbacks
+│   ├── style.css
+│   ├── color-system.css
+│   ├── studio.css
+│   ├── entrance.css
+│   ├── page-transition.css
+│   ├── responsive-motion.css
+│   └── runtime-fixes.css
+├── js/main.js
+├── favicon.svg
+├── site.webmanifest
 ├── robots.txt
 ├── sitemap.xml
-├── assets/
-│   └── brand/
-│       └── favicon.svg
+├── assets/brand/favicon.svg
+├── assets/brand/logo.svg
 └── docs/
-    ├── strategy/
-    ├── brand/
-    ├── reference/
-    ├── seo/
-    ├── llm/
-    └── code/
 ```
 
-## Runtime architecture
+## Runtime ownership
 
-- HTML owns content and semantic structure.
-- CSS owns tokens, layout, responsive behavior and purely visual effects.
-- `main.js` owns behavior and animation orchestration.
-- Locomotive Scroll is the single smooth-scroll engine on desktop; touch devices retain native scrolling.
-- GSAP owns animation choreography. It must not become a second scrolling engine.
-- Three.js is decorative and independent of content rendering.
-- CDN failure must never hide the page content.
-- `prefers-reduced-motion` disables smooth scrolling, transition overlays, Three.js and decorative animation.
-- Visibility changes pause the Three.js render loop to reduce CPU/GPU use.
+- HTML owns content, semantics and SEO.
+- CSS owns layout, tokens, responsive behavior and visual effects.
+- Locomotive Scroll 5 owns desktop smooth scrolling; touch/tablet stays native.
+- GSAP owns animation choreography.
+- Three.js owns decorative particles only.
+- `main.js` owns initialization, fallbacks and coordination between these systems.
 
-## Engineering rules
+## Reliability rules
 
-1. Keep content visible without JavaScript.
-2. Keep mobile/touch interaction simpler than desktop rather than forcing desktop effects onto touch.
-3. Use one owner per concern: Locomotive for scroll, GSAP for animation, Three.js for decorative rendering.
-4. Never add animation merely because it is technically possible; motion must support hierarchy or spatial depth.
-5. Cap expensive effects with device pixel ratio and responsive particle counts.
-6. Respect reduced-motion preferences.
-7. Prefer `requestAnimationFrame` for continuous visual loops.
-8. Avoid layout-triggering animation where transform/opacity can be used.
-9. Add meaningful architecture changes to this document and `docs/reference/file-map.md`.
-10. Keep dependencies CDN-based only while this remains a static landing page; introduce a build system only when real application complexity justifies it.
+1. Content must remain visible without JavaScript.
+2. A failed CDN must not permanently block the page.
+3. The preloader must have both JS completion logic and a CSS fail-safe.
+4. Never run Lenis and Locomotive as competing scroll engines.
+5. Never let Three.js be required for semantic content or navigation.
+6. Reduced-motion must disable decorative motion and smooth scrolling.
+7. Touch devices get a simpler, native interaction model.
+8. Expensive rendering is capped by device pixel ratio and particle count and pauses when hidden.
+9. Use real `<a href>` links for crawlability; animation may enhance navigation but must not replace the link.
 
-## Premium motion system
+## Premium motion
 
-- Page-entry/exit transition overlay.
+- Cinematic initial Avenelix entrance.
 - Weighted desktop smooth scrolling.
-- Section reveal choreography with blur-to-sharp and staggered elements.
-- Subtle cursor parallax on the orbital system.
-- Layered orbital rings with different speeds and orientations.
-- Core breathing glow and periodic pulse.
-- Moving orbital nodes with depth-like scale/opacity modulation.
-- Scroll-progress indicator.
-- Interactive ambient cursor light.
-- Three.js background field with responsive particle budgets.
+- Staggered section/text reveals.
+- Orbital rings, nodes, core pulse and cursor response.
+- Desktop-only magnetic cursor and card tilt.
+- Page transition overlay for future internal routes.
 
-## Performance and resilience
+## SEO/runtime boundary
 
-The decorative layers are `pointer-events:none`. The Three.js renderer is capped at 1.5 device pixel ratio and uses smaller particle budgets on smaller screens. Rendering pauses while the tab is hidden. If Locomotive, GSAP or Three.js fails, semantic content remains accessible and native scrolling remains usable.
+SEO metadata and structured data live in `index.html`; crawl files remain at the repository root. Do not add SEO-only pages until Avenelix has real content to support them.
 
 ## Scaling path
 
-Do not introduce React/Next/Vite or a component system just to organize this landing page. Move to a build system when there is a genuine multi-page application, reusable component layer, package management requirement, testing requirement, or backend integration. At that point use a deliberate `src/`, `public/`, and application architecture rather than incrementally mixing frameworks into the static page.
+Do not introduce React/Next/Vite merely to organize this landing page. Add a build system only when there is genuine multi-page application complexity, reusable components, package management, testing, or backend integration.
