@@ -1,6 +1,10 @@
+import 'locomotive-scroll/dist/locomotive-scroll.css';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import LocomotiveScroll from 'locomotive-scroll';
 import * as THREE from 'three';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
@@ -20,6 +24,7 @@ const nodes = [...document.querySelectorAll<HTMLElement>('.orbit-node')];
 
 let scrollY = 0;
 let loco: LocomotiveScroll | null = null;
+let scrollTriggerReady = false;
 
 const revealFallback = (): void => {
   document.querySelectorAll<HTMLElement>('.kicker,.title,.desc,.actions,.micro,.label,.section-title,.section-body,.principle,.list li,.contact').forEach((element) => {
@@ -54,39 +59,75 @@ const initScroll = (): void => {
     loco = new LocomotiveScroll({
       el: root,
       smooth: true,
-      lerp: 0.075,
-      multiplier: 0.9,
+      lerp: 0.065,
+      multiplier: 0.92,
       touchMultiplier: 1.05,
       getDirection: true,
       getSpeed: true,
-      offset: ['12%', '8%'],
+      resetNativeScroll: false,
       tablet: { smooth: false },
       smartphone: { smooth: false }
     });
+
+    if (root) ScrollTrigger.defaults({ scroller: root });
 
     loco.on('scroll', (event) => {
       scrollY = event.scroll?.y ?? 0;
       header?.classList.toggle('scrolled', scrollY > 24);
       const max = Math.max(1, root.scrollHeight - window.innerHeight);
       document.documentElement.style.setProperty('--scroll-progress', String(Math.min(scrollY / max, 1)));
-
-      Object.values(event.currentElements ?? {}).forEach((item) => {
-        const section = item.el;
-        if (!section?.classList.contains('reveal-section') || section.dataset.revealed) return;
-        section.dataset.revealed = 'true';
-        const children = section.querySelectorAll<HTMLElement>('.label,.section-title,.section-body,.principle,.list li,.contact');
-        gsap.fromTo(children, { y: 28, opacity: 0, filter: 'blur(4px)' }, { y: 0, opacity: 1, filter: 'blur(0)', duration: .75, stagger: .065, ease: 'power3.out', clearProps: 'transform,filter,opacity' });
-      });
+      if (scrollTriggerReady) ScrollTrigger.update();
     });
+
+    scrollTriggerReady = true;
+    initScrollScenes();
+    ScrollTrigger.refresh();
   } catch (error) {
     console.warn('Locomotive Scroll unavailable; using native scrolling.', error);
+    initScrollScenes();
   }
+};
+
+const initScrollScenes = (): void => {
+  if (prefersReducedMotion) return;
+
+  const sections = document.querySelectorAll<HTMLElement>('.reveal-section');
+  sections.forEach((section) => {
+    const items = section.querySelectorAll<HTMLElement>('.label,.section-title,.section-body,.principle,.list li,.contact');
+    gsap.fromTo(items, { y: 38, opacity: 0, filter: 'blur(5px)' }, {
+      y: 0,
+      opacity: 1,
+      filter: 'blur(0)',
+      duration: .9,
+      stagger: .075,
+      ease: 'power3.out',
+      clearProps: 'transform,filter,opacity',
+      scrollTrigger: { trigger: section, start: 'top 76%', once: true }
+    });
+  });
+
+  if (orbit) {
+    gsap.to(orbit, {
+      yPercent: -7,
+      rotation: 2,
+      ease: 'none',
+      scrollTrigger: { trigger: root ?? document.body, start: 'top top', end: 'bottom bottom', scrub: 1.2 }
+    });
+  }
+
+  gsap.utils.toArray<HTMLElement>('.section').forEach((section) => {
+    gsap.fromTo(section, { opacity: .78 }, {
+      opacity: 1,
+      ease: 'none',
+      scrollTrigger: { trigger: section, start: 'top 92%', end: 'top 38%', scrub: true }
+    });
+  });
 };
 
 const initOrbit = (): void => {
   if (prefersReducedMotion) return;
   rings.forEach((ring, index) => {
-    gsap.to(ring, { rotation: 360 * (index % 2 === 0 ? 1 : -1), duration: [92, 118, 140, 108, 165][index], repeat: -1, ease: 'none' });
+    gsap.to(ring, { rotation: 360 * (index % 2 === 0 ? 1 : -1), duration: [92, 118, 140, 108, 165][index] ?? 110, repeat: -1, ease: 'none' });
   });
   if (core) gsap.to(core, { scale: 1.055, duration: 3.4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
   const states = nodes.map((_, index) => ({ angle: index * 1.25, radius: [.34,.37,.32,.36,.29][index] ?? .34, speed: [.19,-.15,.12,-.1,.08][index] ?? .1 }));
@@ -136,6 +177,7 @@ const initTransitions = (): void => {
       const target = new URL(href, location.href);
       if (target.origin !== location.origin) return;
       event.preventDefault();
+      loco?.stop();
       transition?.classList.add('is-leaving');
       window.setTimeout(() => { location.href = target.href; }, 700);
     });
@@ -154,16 +196,16 @@ const initParticles = (): void => {
     const camera = new THREE.PerspectiveCamera(38, innerWidth / innerHeight, .1, 100);
     camera.position.z = 6.5;
     const group = new THREE.Group(); scene.add(group);
-    const count = innerWidth < 600 ? 360 : innerWidth < 1000 ? 650 : 1000;
+    const count = innerWidth < 600 ? 300 : innerWidth < 1000 ? 560 : 900;
     const positions = new Float32Array(count * 3);
     for (let i = 0; i < count; i += 1) { const r = 2.35 * Math.pow(Math.random(), .52); const a = Math.random() * Math.PI * 2; const j = i * 3; positions[j] = r * Math.cos(a); positions[j + 1] = r * Math.sin(a) * .72; positions[j + 2] = (Math.random() - .5) * 2.4; }
     const geometry = new THREE.BufferGeometry(); geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    group.add(new THREE.Points(geometry, new THREE.PointsMaterial({ color: 0xd9ff8c, size: innerWidth < 600 ? .014 : .017, transparent: true, opacity: .2, depthWrite: false })));
+    group.add(new THREE.Points(geometry, new THREE.PointsMaterial({ color: 0xd9ff8c, size: innerWidth < 600 ? .014 : .017, transparent: true, opacity: .18, depthWrite: false })));
     let running = true;
     const render = (time: number): void => { if (!running) return; group.rotation.y = time * .000012; group.rotation.x = Math.sin(time * .00022) * .018; renderer.render(scene, camera); requestAnimationFrame(render); };
     document.addEventListener('visibilitychange', () => { running = !document.hidden; if (running) requestAnimationFrame(render); });
     requestAnimationFrame(render);
-    addEventListener('resize', () => { renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.5)); renderer.setSize(innerWidth, innerHeight, false); camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); loco?.update(); }, { passive: true });
+    addEventListener('resize', () => { renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.5)); renderer.setSize(innerWidth, innerHeight, false); camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); loco?.update(); ScrollTrigger.refresh(); }, { passive: true });
   } catch (error) { console.warn('WebGL particle field unavailable.', error); }
 };
 
@@ -177,10 +219,22 @@ const initPreloader = (): void => {
   window.setTimeout(finish, 3200);
 };
 
-const tick = (): void => {
-  const progress = Math.min(scrollY / Math.max(1, (root?.scrollHeight ?? document.documentElement.scrollHeight) - innerHeight), 1);
-  if (shell && !prefersReducedMotion) shell.style.transform = `rotateX(${progress * 8}deg) rotateZ(${progress * -16}deg)`;
-  requestAnimationFrame(tick);
+const initStudioPolish = (): void => {
+  if (prefersReducedMotion) return;
+  const micro = document.querySelector<HTMLElement>('.micro');
+  if (micro) gsap.fromTo(micro, { opacity: 0 }, { opacity: .55, duration: 1.2, delay: 1.2, ease: 'power2.out' });
+  document.querySelectorAll<HTMLElement>('.principle').forEach((card) => {
+    card.addEventListener('pointermove', (event) => {
+      if (coarsePointer) return;
+      const rect = card.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - .5;
+      const y = (event.clientY - rect.top) / rect.height - .5;
+      card.style.transform = `perspective(900px) rotateX(${y * -2.5}deg) rotateY(${x * 3.5}deg) translateY(-5px)`;
+      card.style.setProperty('--card-x', `${(x + .5) * 100}%`);
+      card.style.setProperty('--card-y', `${(y + .5) * 100}%`);
+    });
+    card.addEventListener('pointerleave', () => { card.style.transform = ''; card.style.removeProperty('--card-x'); card.style.removeProperty('--card-y'); });
+  });
 };
 
 initPreloader();
@@ -190,5 +244,11 @@ initOrbit();
 initCursor();
 initTransitions();
 initParticles();
-requestAnimationFrame(tick);
-window.addEventListener('load', () => { loco?.update(); revealFallback(); transition?.classList.add('is-ready'); });
+initStudioPolish();
+
+window.addEventListener('load', () => {
+  loco?.update();
+  ScrollTrigger.refresh();
+  revealFallback();
+  transition?.classList.add('is-ready');
+});
