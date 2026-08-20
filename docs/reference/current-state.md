@@ -1,83 +1,68 @@
 # Avenelix Current State
 
-_Last updated: 2026-08-13 (Cinematic Dark redesign)_
+_Last updated: 2026-08-20_
 
 ## Status
 
-**Pre-product / exploration / coming-soon stage.**
+**Pre-product / exploration / coming-soon stage.** The public site is a single-page brand/technology presence; no product claims should be invented for SEO.
 
-The brand/domain exists and the first public web presence is live. The founder is still deciding what Avenelix will build and how it will be positioned.
+## Current frontend
 
-## Completed
+The frontend is split for maintainability:
 
-- Domain `avenelix.com` purchased.
-- Vercel deployment established.
+- `index.html` — semantic content, SEO metadata, structured data and asset entry points.
+- `css/style.css` — core visual/layout system.
+- `css/color-system.css` — Avenelix dark/lime/mint color and gradient system.
+- `css/studio.css` — premium cursor, grain, glass and interaction styling.
+- `css/entrance.css` — cinematic initial brand entrance.
+- `css/page-transition.css` — navigation transition overlay.
+- `css/responsive-motion.css` — responsive motion rules.
+- `css/runtime-fixes.css` — fail-safe loading/mobile safeguards.
+- `js/main.js` — scroll, GSAP choreography, orbital motion, cursor interaction and Three.js particles.
+
+## Runtime architecture
+
+- Locomotive Scroll 5 is the only smooth-scroll engine on desktop.
+- Touch/tablet devices use native scrolling.
+- GSAP owns animation choreography.
+- Three.js is decorative and must never be required for content visibility.
+- If a CDN enhancement fails, content remains visible and native scrolling remains usable.
+- The preloader has deterministic progress plus a CSS fail-safe so it cannot permanently cover the page.
+- Reduced-motion users skip decorative motion and the preloader.
+- Three.js pauses while the document is hidden and uses lower particle budgets on smaller screens.
+
+## Recent repair
+
+The previous `main.js` had a JavaScript syntax error in the Lenis initialization and was still loading Lenis even though the intended architecture had moved to Locomotive Scroll. The orbital initialization guard was also inverted, and the particle renderer was not being rendered correctly. These were corrected on 2026-08-20.
+
+## SEO foundation
+
+- Canonical URL: `https://avenelix.com/`.
+- Crawlable `robots.txt` with sitemap reference.
+- Root `sitemap.xml` with current homepage timestamp.
+- Root `/favicon.svg` plus brand logo asset.
+- `WebSite` structured data for the preferred site name.
+- `Organization` structured data with a crawlable 512×512 logo URL.
+- Open Graph and Twitter metadata.
+
+SEO changes improve eligibility and clarity; they do not guarantee ranking. Search Console recrawl/indexing still has to occur after deployment.
+
+## Deployment
+
+- Vercel is the intended host.
 - Cloudflare DNS is active.
-- Apex domain `avenelix.com` is live.
-- `www.avenelix.com` redirects to `avenelix.com`.
-- Coming-soon landing page built and iterated toward a dark, abstract AI/system identity.
-- Responsive behavior implemented.
-- SEO metadata added.
-- `robots.txt` added.
-- `sitemap.xml` added.
-- Google Search Console configured and live URL test succeeds.
-- Google has not yet indexed the homepage at the time this document was written.
-- Cloudflare Email Routing is being used/planned so `hello@avenelix.com` can forward to an existing Gmail inbox without paying for a full mailbox.
-
-## Current repository
-
-The repository is intentionally lightweight:
-
-- `index.html` — current landing page (single-file: HTML + CSS + JS).
-- `robots.txt` — crawler rules + sitemap reference.
-- `sitemap.xml` — homepage sitemap.
-- `README.md` — project entry point.
-- `docs/` — durable project context.
-- `docs/code/` — implementation-specific documentation (CSS architecture, JS behavior, assets) updated for Cinematic Dark redesign.
-- `docs/strategy/website-redesign-strategy.md` — comprehensive redesign plan with reference site analysis.
-
-## Current website experience
-
-The landing page now features:
-- Minimalist hero with large Space Grotesk title (capped at `7rem` for ultra-wide) and subtle accent‑colored radial glow.
-- Interactive 3D point cloud scene (fibonacci sphere) rendered on canvas, rotating with cursor movement for cinematic depth; reduces to 200 points on mobile and pauses when the tab is hidden. Includes subtle scroll-based parallax for added depth.
-- Canvas includes `role="img"` and `aria-label` for screen-reader accessibility.
-- Subtle animated dark gradient background creating a cinematic atmosphere.
-- Lightweight CSS spinner loader (no heavy animation).
-- Scroll‑progress bar at the top of the viewport with a soft glow.
-- Clean vision‑first sections (Vision, Direction, Contact) with refined spacing and typography; principle cards stagger in on scroll and lift with an accent border on hover.
-- Direction list items brighten and shift on hover; contact link reveals an arrow on hover.
-- Primary CTA button has a soft glow on hover; footer brightens on hover.
-- Header gains a blurred translucent background on scroll.
-- Responsive layout for mobile, tablet, and desktop; dot navigation and marquee removed.
-- Particle canvas and cursor‑glow trail removed.
-- Time‑based status greeting in the header.
-- Ambient cursor-follow radial light (very subtle).
-- Header includes brand favicon mark.
-- Scroll position is preserved on page refresh via `sessionStorage`.
-- Full `prefers‑reduced‑motion` support: all animations hidden when requested.
-- Accessibility features: skip link, focus‑visible outlines, high contrast colors.
-
-## Current contact model
-
-Public email: `hello@avenelix.com`.
-
-The early-stage requirement is simply: a visitor should be able to email the address and the founder should receive it. A full custom-domain mailbox is unnecessary until there is a real operational need.
+- Apex domain is canonical; `www` should redirect to the apex domain.
 
 ## Known limitations
 
-- There is no finished product yet.
-- There is no full multi-page portfolio/product website yet.
-- The exact service offering is not finalized.
-- No SaaS product has been selected/validated yet.
-- Google indexing is pending.
-- The current landing page is intentionally a first impression rather than the final company website.
+- No finished product yet.
+- No real multi-page portfolio/product content yet.
+- Google indexing and favicon display are controlled by Google's crawl/reprocessing cycle and cannot be forced by HTML alone.
+- Final browser/device QA must be performed on the deployed build after frontend changes.
 
-## Next practical priorities
+## Next priorities
 
-1. Finish/verify email forwarding.
-2. Get the homepage indexed by Google.
-3. Continue evaluating the Avenelix positioning.
-4. Identify and validate the first concrete product/problem.
-5. Replace the coming-soon page with a real site once there is enough substance to show.
-6. Build the first product only after its problem/value proposition is clear.
+1. Verify the deployed build loads on phone, laptop and desktop.
+2. Use Google Search Console URL Inspection and request a homepage recrawl after deployment.
+3. Verify `/favicon.svg`, `/assets/brand/logo.svg`, `/robots.txt`, and `/sitemap.xml` return successfully in production.
+4. Continue improving real site content before adding SEO-only pages.
