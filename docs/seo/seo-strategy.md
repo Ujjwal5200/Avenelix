@@ -6,11 +6,11 @@ _Last updated: 2026-08-20_
 
 For branded searches such as `Avenelix`, `avenelix`, and `Avenelix AI`, the canonical site `https://avenelix.com/` should become the strongest and most obvious result.
 
-A top position cannot be guaranteed by metadata alone. Crawlability, useful content, authority, links, freshness and Google's systems all matter.
+A top position cannot be guaranteed by metadata alone. Crawlability, useful content, authority, links, freshness and search-engine systems all matter.
 
 ## Current technical SEO implementation
 
-`index.html` now contains:
+`index.html` contains:
 
 - descriptive title and meta description;
 - `robots` allowing indexing;
@@ -31,9 +31,9 @@ Root deployment files:
 
 ## Favicon / Google result icon
 
-Google can use a site's favicon in organic search results, but does not guarantee that it will display. Current implementation follows Google's requirements: square 1:1 artwork, stable URL, crawlable home page and crawlable favicon. Google recommends a favicon larger than 48×48px; Avenelix exposes a 512×512 SVG. After deployment, use Search Console URL Inspection to request a recrawl. Google's favicon processing can take days to weeks. citeturn1search4
+Google can use a site's favicon in organic search results, but does not guarantee that it will display. The current implementation uses a stable square 512×512 favicon URL and keeps the homepage and icon crawlable. After deployment, use Search Console URL Inspection to request a recrawl. Favicon processing can take days to weeks.
 
-The browser favicon and the Organization `logo` are separate concepts. The favicon is the small site icon shown beside a result; Organization structured data helps Google understand the preferred organizational logo. citeturn1search0
+The browser favicon and the Organization `logo` are separate concepts. The favicon is the small site icon; Organization structured data identifies the preferred organizational logo.
 
 ## Site name
 
@@ -43,7 +43,7 @@ The homepage uses `WebSite` structured data with:
 - `alternateName`: `Avenelix AI`
 - `url`: `https://avenelix.com/`
 
-Google's site-name system is automated, but `WebSite` structured data is the preferred way to indicate the desired site name. citeturn1search3
+Google's site-name system is automated; structured data is the preferred way to indicate the desired site name.
 
 ## Brand-ranking priorities
 
@@ -55,11 +55,11 @@ Google's site-name system is automated, but `WebSite` structured data is the pre
 6. Add useful product, project, service or writing pages only when there is real substance.
 7. Monitor Search Console rather than repeatedly changing metadata without evidence.
 
-Google treats sitemap submission as a discovery hint, not a ranking guarantee. citeturn0search6
+Sitemap submission is a discovery hint, not a ranking guarantee.
 
 ## Content strategy
 
-The current site is still coming-soon. Do not manufacture SEO pages, keyword-stuffed copy or fake services. When Avenelix has real products/projects, build descriptive pages around those entities and connect them with normal HTML links. Google explicitly recommends crawlable `<a href>` links and useful anchor text. citeturn0search3
+The current site is still coming-soon. Do not manufacture SEO pages, keyword-stuffed copy or fake services. When Avenelix has real products/projects, build descriptive pages around those entities and connect them with normal HTML links.
 
 ## What not to do
 
