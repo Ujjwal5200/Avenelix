@@ -1,12 +1,17 @@
-import StudioCanvas from '@/components/StudioCanvas';
+import dynamic from 'next/dynamic';
 import StudioRuntime from '@/components/StudioRuntime';
+
+const StudioCanvas = dynamic(() => import('@/components/StudioCanvas'), {
+  ssr: false,
+  loading: () => <div className="hero-canvas-fallback" aria-hidden="true" />
+});
 
 const capabilities = [
   ['01', 'AI SYSTEMS', 'Intelligent systems, orchestration and reliable model-powered software.'],
   ['02', 'SOFTWARE', 'Production applications engineered around real operational problems.'],
   ['03', 'DATA', 'Pipelines, retrieval, analytics and decision systems.'],
   ['04', 'INFRASTRUCTURE', 'Cloud architecture, deployment, observability and developer platforms.']
-];
+] as const;
 
 export default function Home() {
   return <>
@@ -32,7 +37,7 @@ export default function Home() {
       <section className="section" data-reveal>
         <div className="section-grid"><div className="mono">03 · SELECTED WORK</div><div><h2>Experiments becoming products.</h2><div className="work-grid"><a className="work-card" href="/work"><span className="mono">AI / SYSTEMS</span><h3>Intelligent infrastructure</h3><p>Explore the systems we are building and validating.</p></a><a className="work-card" href="/technology"><span className="mono">SOFTWARE / ENGINEERING</span><h3>Production software</h3><p>Architecture, interfaces and infrastructure engineered together.</p></a></div></div></div>
       </section>
-      <section className="section contact" data-reveal><div className="mono">04 · START A PROJECT</div><h2>Let's build something difficult.</h2><a className="contact-link" href="mailto:hello@avenelix.com">hello@avenelix.com ↗</a></section>
+      <section className="section contact" data-reveal><div className="mono">04 · START A PROJECT</div><h2>Let's build something difficult.</h2><a className="contact-link" href="/contact">Start a conversation ↗</a></section>
     </main>
   </>;
 }
