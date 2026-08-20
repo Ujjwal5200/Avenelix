@@ -11,7 +11,7 @@ function Core({ mobile, tablet }: { mobile: boolean; tablet: boolean }) {
   useFrame((state) => {
     if (!ref.current) return;
     const t = state.clock.elapsedTime;
-    const speed = mobile ? 0.55 : tablet ? 0.075 : 0.1;
+    const speed = mobile ? 0.055 : tablet ? 0.075 : 0.1;
     ref.current.rotation.x = t * speed;
     ref.current.rotation.y = t * (speed * 1.45);
     if (!mobile) {
