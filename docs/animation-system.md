@@ -1,38 +1,57 @@
 # Avenelix Animation System
 
 ## Design direction
-- Premium, cinematic, dark, restrained, futuristic.
-- Motion is part of the brand identity; do not remove Three.js, orbital visuals, particles, GSAP, or smooth scrolling merely for simplicity.
-- Animation must enhance content, never gate rendering.
+- Target: high-end digital production studio / technology studio quality, not a conventional SaaS landing page.
+- Preserve the dark technical canvas, lime/mint signal palette, orbital identity and strong typography.
+- Motion and 3D are first-class brand elements. Do not remove them merely to simplify implementation.
+- The experience should feel cinematic and alive while keeping content immediately usable.
 
-## Current stack
-- Locomotive Scroll 5 for desktop smooth scrolling; native scrolling on touch/tablet.
-- GSAP for cinematic reveals, orbital choreography and micro-interactions.
-- Three.js for the atmospheric particle field.
-- CSS for glass/blur, grain, hover states and lightweight transitions.
-- No second smooth-scroll engine alongside Locomotive Scroll.
+## Runtime stack
+- TypeScript + Vite as the frontend foundation.
+- Locomotive Scroll 5 for desktop smooth scrolling; native-feeling scrolling on touch/tablet.
+- GSAP + ScrollTrigger for all choreography, reveals, parallax and micro-interactions.
+- Three.js for the hero 3D scene, particles, glass/crystal geometry, orbital rings and controlled bloom.
+- CSS for glass, grain, atmospheric gradients and lightweight transitions.
+- Keep one animation owner per concern; do not add a second smooth-scroll engine.
+
+## 3D direction
+- Prefer original/procedural Three.js hero geometry for the Avenelix identity: translucent crystal/icosahedral core, fine wireframe shell, orbital rings and restrained particle field.
+- Use physically based materials, environment lighting, ACES tone mapping and selective bloom rather than generic neon effects.
+- External GLB/GLTF/Spline assets may be introduced when they add a materially stronger focal object; assets must be licensed/owned and optimized before shipping.
+- Avoid random stock 3D models that weaken the brand or look like template content.
 
 ## Studio interaction layer
-- Split-word headline reveals with clip/translate motion.
-- Magnetic CTA/contact/brand interaction on fine pointers.
+- Cinematic preloader: logo → staged technical status → controlled reveal into the site.
+- Split-word/clip headline reveals and section choreography.
 - Custom inertial cursor with contextual labels on fine pointers only.
-- Perspective card tilt and cursor spotlight on exploration cards.
-- Fixed header transitions between transparent and glass states.
-- Subtle film-grain overlay to unify the visual system.
-- Page entry/exit cover transitions for same-origin navigation.
-- Scroll progress indicator.
-- Orbital cursor/parallax response and independent ring/node motion.
-- Rare core energy pulses instead of constant high-intensity effects.
+- Magnetic/perspective CTA and card interactions on fine pointers.
+- Glass navigation/header state on scroll.
+- Scroll-linked orbital parallax and depth changes.
+- Rare energy pulses and subtle bloom instead of constant high-intensity effects.
+- Same-origin page transition overlay with controlled exit timing.
+- Scroll progress indicator and subtle film grain.
 
-## Quality bar
-The target is the feeling of a high-end digital production studio: smooth enough that motion is felt before it is consciously noticed. Effects should have hierarchy, consistent easing and restraint. Avoid adding effects simply because they are technically possible.
+## Visual hierarchy
+1. Content and typography.
+2. Hero 3D focal object.
+3. Atmospheric depth/gradient.
+4. Scroll choreography.
+5. Cursor/micro-interactions.
+6. Secondary decorative detail.
 
-## Performance rules
-- Keep WebGL decorative and disposable; content must remain fully usable if WebGL/CDN/animation libraries fail.
-- Cap device pixel ratio and particle count.
-- Never run desktop cursor effects on coarse pointers.
-- Avoid scroll handlers that force layout; use transforms, requestAnimationFrame and Locomotive's scroll events.
-- Pause the Three.js renderer when the document is hidden.
-- Avoid excessive blur, glow, and simultaneous animations.
+Do not allow effects to compete with the headline, CTA or readable product/company positioning.
+
+## Responsive quality bar
+- Desktop/laptop: full 3D scene, bloom, particles, smooth scroll, cursor and richer interaction.
+- Tablet: lower 3D/particle density and native-feeling touch scroll.
+- Phone: preserve the hero object and visual identity, but reduce geometry density, bloom, blur and interaction complexity; content must remain the dominant layer.
+- Never let decorative WebGL determine content height or block rendering.
 - Respect `prefers-reduced-motion`.
-- Keep touch scrolling native-feeling; do not force desktop inertia on phones.
+
+## Performance/failure rules
+- WebGL is decorative and disposable; HTML content remains usable without it.
+- Cap device pixel ratio and particle count.
+- Pause rendering when the document is hidden.
+- Dispose Three.js resources when the scene is destroyed.
+- Avoid excessive blur, bloom and simultaneous animations.
+- Test deployed builds on phone, tablet, laptop and large desktop before merging to `main`.
