@@ -1,5 +1,18 @@
 'use client';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export function SiteHeader(){const [open,setOpen]=useState(false);return <header className="site-nav"><Link className="brand" href="/">AVENELIX</Link><nav className="nav-links"><Link href="/work">Work</Link><Link href="/studio">Studio</Link><Link href="/technology">Technology</Link><Link href="/approach">Approach</Link></nav><button className="menu-button" aria-expanded={open} onClick={()=>setOpen(!open)}>Menu</button>{open&&<div className="mobile-menu"><Link href="/work" onClick={()=>setOpen(false)}>Work</Link><Link href="/studio" onClick={()=>setOpen(false)}>Studio</Link><Link href="/technology" onClick={()=>setOpen(false)}>Technology</Link><Link href="/approach" onClick={()=>setOpen(false)}>Approach</Link><Link href="/contact" onClick={()=>setOpen(false)}>Contact</Link></div>}</header>}
+const links = [['Work','/work'],['Studio','/studio'],['Technology','/technology'],['Approach','/approach']] as const;
+
+export function SiteHeader(){
+  const [open,setOpen]=useState(false);
+  const [scrolled,setScrolled]=useState(false);
+  useEffect(()=>{const onScroll=()=>setScrolled(window.scrollY>24); window.addEventListener('scroll',onScroll,{passive:true}); return()=>window.removeEventListener('scroll',onScroll)},[]);
+  return <header className={`site-nav${scrolled?' is-scrolled':''}`}>
+    <Link className="brand" href="/" aria-label="Avenelix home">AVENELIX</Link>
+    <nav className="nav-links" aria-label="Primary navigation">{links.map(([label,href])=><Link key={href} href={href}>{label}</Link>)}</nav>
+    <span className="nav-meta mono">AI · SOFTWARE · SYSTEMS</span>
+    <button className="menu-button" aria-expanded={open} aria-controls="mobile-navigation" onClick={()=>setOpen(v=>!v)}>{open?'Close':'Menu'}</button>
+    {open&&<div id="mobile-navigation" className="mobile-menu" aria-label="Mobile navigation">{links.map(([label,href])=><Link key={href} href={href} onClick={()=>setOpen(false)}>{label}</Link>)}<Link href="/contact" onClick={()=>setOpen(false)}>Contact ↗</Link></div>}
+  </header>
+}
