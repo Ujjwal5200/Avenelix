@@ -1,7 +1,5 @@
-import dynamic from 'next/dynamic';
+import StudioCanvas from '@/components/studio-canvas-client';
 import StudioRuntime from '@/components/StudioRuntime';
-
-const StudioCanvas = dynamic(() => import('@/components/StudioCanvas'), { ssr: false, loading: () => <div className="hero-canvas-fallback" aria-hidden="true" /> });
 
 const capabilities = [
   ['01', 'AI SYSTEMS', 'Intelligent systems, orchestration and reliable model-powered software.'],
