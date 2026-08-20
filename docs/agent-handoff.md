@@ -2,29 +2,43 @@
 
 ## Current state
 - Avenelix is an early-stage independent AI/software venture website.
-- Current site direction is intentionally premium, dark, futuristic and motion-rich.
-- The founder explicitly likes the existing visual treatment and interaction: Three.js scene/particles, orbital visual, GSAP reveals, smooth scrolling, cursor response, glow and animation. These are intentional design features, not technical problems to remove by default.
-- Do not simplify the site into a conventional minimalist/static landing page merely to reduce JavaScript or animation. Visual quality and experience are a first-class priority.
+- The founder wants the public site to reach high-end digital production-studio quality: visually impressive, cinematic, interactive, 3D/motion-rich and credible enough to present as a serious software studio.
+- Existing Three.js/orbital/particles, GSAP choreography, smooth scrolling, cursor response, glow, preloader and page transitions are intentional design features and should be improved rather than removed by default.
+- The site must remain responsive across phones, tablets, laptops and large desktops.
 
 ## Explicit design preference
-- Preserve the current high-quality visual language and interactive feel.
-- Future site work should improve clarity and usability without stripping out the motion/3D character that defines Avenelix.
-- Treat the existing visual system as the baseline unless the founder explicitly asks for a redesign.
+- Prioritize perceived quality, polish, depth and interaction over minimal implementation size.
+- Heavy libraries are acceptable when they materially improve the experience.
+- Prefer original/procedural 3D art or properly licensed optimized GLB/GLTF/Spline assets over generic stock 3D objects.
+- Keep the Avenelix dark technical + lime/mint visual language coherent across the site.
 
-## Approved improvements from current review
-Only the following changes are currently authorized from the latest review:
-1. Sharpen the hero/company messaging so the positioning is clearer while keeping the product undisclosed.
-2. Fix the mobile hero composition; the current mobile layout should not let the decorative visual dictate excessive vertical spacing.
-3. Improve the page title/SEO wording so it matches the current positioning more precisely; avoid forcing "SaaS" into the title when no SaaS product is publicly announced.
+## Current technical direction
+- TypeScript + Vite runtime on the studio branch.
+- Locomotive Scroll 5 for desktop smooth scroll; native-feeling touch/tablet scrolling.
+- GSAP + ScrollTrigger for motion choreography.
+- Three.js for the hero 3D scene, particles, procedural crystal geometry, orbital rings and selective bloom/post-processing.
+- CSS for glass, grain, gradients and lightweight transition styling.
+- WebGL must remain decorative/fail-safe; content cannot depend on it.
 
-Do not infer approval for other proposed changes. In particular, do not remove Three.js, GSAP, Lenis, particles, orbital visuals, glow, or other animation systems solely for performance/style reasons without a new explicit decision.
+## Premium studio quality bar
+- Hero should have a strong 3D focal object rather than a flat decorative background.
+- Use physically based materials, environment lighting, restrained bloom and layered depth rather than generic neon effects.
+- Motion hierarchy: typography first, hero 3D second, atmosphere third, interactions last.
+- Use deliberate timing, easing and pauses; avoid effects firing everywhere simultaneously.
+- Preloader should feel intentional and deterministic, then transition smoothly into the hero.
+- Desktop gets the richest interaction; mobile preserves the identity while reducing density and interaction complexity.
 
 ## Positioning constraint
-The site should communicate "deliberately early/private" rather than "unclear/unformed." It is acceptable to say that products are not announced yet, but the company category and technical direction should still be understandable.
+The site should communicate deliberately early/private rather than unclear/unformed. Do not invent products or customer claims. The public content should still make Avenelix's AI/software/system direction understandable.
 
-## Working rule for future agents
-When reviewing or modifying Avenelix, separate:
-- **Founder-approved design direction:** premium, visually impressive, interactive, 3D/motion-rich.
-- **Actual improvement targets:** message clarity, mobile composition, and precise SEO/title wording.
+## Safety/rollback rule
+- Keep the TypeScript studio work isolated from `main` until the Vercel build and real device QA pass.
+- Treat the latest successful `main` deployment as the production rollback baseline.
+- Never merge a visually ambitious change without a successful production build.
 
-Do not repeatedly recommend removing the visual character that the founder has explicitly chosen to keep.
+## Next priorities
+1. Get the TypeScript studio branch building successfully on Vercel.
+2. Validate the new Three.js/WebGL focal scene and responsive fallbacks.
+3. Refine gradients, glass, typography and section composition without turning the site into generic Web3/neon design.
+4. Test 360/390/430px phone, tablet, 1280/1440px laptop and 1920px desktop.
+5. Only merge to `main` after build + visual/device QA.
