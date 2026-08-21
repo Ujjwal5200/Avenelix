@@ -12,41 +12,20 @@ export default function StudioRuntime() {
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduce) return;
 
-    const lenis = new Lenis({
-      lerp: 0.16,
-      smoothWheel: true,
-      syncTouch: false,
-      wheelMultiplier: 1,
-      touchMultiplier: 1,
-      anchors: true,
-      autoRaf: false
-    });
-
-    const raf = (time: number) => {
-      lenis.raf(time * 1000);
-      ScrollTrigger.update();
-    };
+    const lenis = new Lenis({ lerp: 0.2, smoothWheel: true, syncTouch: false, wheelMultiplier: 1, touchMultiplier: 1, anchors: true, autoRaf: false });
+    const raf = (time: number) => { lenis.raf(time * 1000); ScrollTrigger.update(); };
     gsap.ticker.add(raf);
     gsap.ticker.lagSmoothing(1000, 16);
 
     const reveal = document.querySelectorAll<HTMLElement>('[data-reveal],.section,.page-hero,.page-cta,.contact');
-    reveal.forEach((el) => {
-      gsap.fromTo(el, { y: 34, opacity: 0.7 }, {
-        y: 0, opacity: 1, duration: 0.85, ease: 'power3.out',
-        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
-      });
-    });
+    reveal.forEach((el) => gsap.fromTo(el, { y: 30, opacity: 0.72 }, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true } }));
 
     const cards = document.querySelectorAll<HTMLElement>('.capability,.work-card,.work-feature,.technology-feature,.approach-step,.studio-principles article');
     cards.forEach((el) => {
       const onEnter = () => gsap.to(el, { y: -4, duration: 0.35, ease: 'power3.out' });
       const onLeave = () => gsap.to(el, { y: 0, duration: 0.45, ease: 'power3.out' });
-      el.addEventListener('mouseenter', onEnter);
-      el.addEventListener('mouseleave', onLeave);
-      (el as HTMLElement & { __avenelixCleanup?: () => void }).__avenelixCleanup = () => {
-        el.removeEventListener('mouseenter', onEnter);
-        el.removeEventListener('mouseleave', onLeave);
-      };
+      el.addEventListener('mouseenter', onEnter); el.addEventListener('mouseleave', onLeave);
+      (el as HTMLElement & { __avenelixCleanup?: () => void }).__avenelixCleanup = () => { el.removeEventListener('mouseenter', onEnter); el.removeEventListener('mouseleave', onLeave); };
     });
 
     const hero = gsap.timeline({ defaults: { ease: 'power4.out' } });
@@ -62,7 +41,7 @@ export default function StudioRuntime() {
       lastScroll = y;
       const p = Math.min(y / 700, 1);
       scrollTween?.kill();
-      scrollTween = gsap.to('.hero-canvas', { y: p * -24, scale: 1 + p * 0.018, duration: 0.28, overwrite: true, ease: 'power2.out' });
+      scrollTween = gsap.to('.hero-canvas', { y: p * -18, scale: 1 + p * 0.012, duration: 0.22, overwrite: true, ease: 'power2.out' });
       document.documentElement.style.setProperty('--scroll-progress', String(p));
     };
     addEventListener('scroll', onScroll, { passive: true });
@@ -70,7 +49,7 @@ export default function StudioRuntime() {
     const onMove = (event: MouseEvent) => {
       const x = event.clientX / window.innerWidth - 0.5;
       const y = event.clientY / window.innerHeight - 0.5;
-      gsap.to('.hero-copy', { x: x * 4, y: y * 2.5, duration: 0.7, ease: 'power3.out', overwrite: true });
+      gsap.to('.hero-copy', { x: x * 3, y: y * 2, duration: 0.65, ease: 'power3.out', overwrite: true });
     };
     addEventListener('mousemove', onMove, { passive: true });
 
@@ -78,17 +57,11 @@ export default function StudioRuntime() {
     addEventListener('resize', onResize);
 
     return () => {
-      lenis.destroy();
-      gsap.ticker.remove(raf);
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      lenis.destroy(); gsap.ticker.remove(raf); ScrollTrigger.getAll().forEach((t) => t.kill());
       cards.forEach((el) => (el as HTMLElement & { __avenelixCleanup?: () => void }).__avenelixCleanup?.());
-      hero.kill();
-      scrollTween?.kill();
-      removeEventListener('scroll', onScroll);
-      removeEventListener('mousemove', onMove);
-      removeEventListener('resize', onResize);
+      hero.kill(); scrollTween?.kill();
+      removeEventListener('scroll', onScroll); removeEventListener('mousemove', onMove); removeEventListener('resize', onResize);
     };
   }, []);
-
   return null;
 }
