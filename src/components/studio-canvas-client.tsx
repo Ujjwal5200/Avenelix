@@ -13,11 +13,21 @@ export default function StudioCanvasClient() {
 
   useEffect(() => {
     let cancelled = false;
+    let timer: ReturnType<typeof window.setTimeout> | undefined;
     const start = () => { if (!cancelled) setReady(true); };
-    const idle = 'requestIdleCallback' in window
-      ? window.setTimeout(() => window.requestIdleCallback(start, { timeout: 900 }), 250)
-      : window.setTimeout(start, 450);
-    return () => { cancelled = true; window.clearTimeout(idle); };
+
+    if ('requestIdleCallback' in window) {
+      timer = window.setTimeout(() => {
+        if (!cancelled) window.requestIdleCallback(start, { timeout: 900 });
+      }, 250);
+    } else {
+      timer = window.setTimeout(start, 450);
+    }
+
+    return () => {
+      cancelled = true;
+      if (timer !== undefined) window.clearTimeout(timer);
+    };
   }, []);
 
   if (!ready) return <div className="hero-canvas-fallback" aria-hidden="true" />;
