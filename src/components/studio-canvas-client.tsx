@@ -13,20 +13,20 @@ export default function StudioCanvasClient() {
 
   useEffect(() => {
     let cancelled = false;
-    let timer: ReturnType<typeof setTimeout> | undefined;
+    let timer: number | undefined;
     const start = () => { if (!cancelled) setReady(true); };
 
     if ('requestIdleCallback' in window) {
-      timer = setTimeout(() => {
+      timer = window.setTimeout(() => {
         if (!cancelled) window.requestIdleCallback(start, { timeout: 900 });
       }, 250);
     } else {
-      timer = setTimeout(start, 450);
+      timer = window.setTimeout(start, 450);
     }
 
     return () => {
       cancelled = true;
-      if (timer !== undefined) clearTimeout(timer);
+      if (timer !== undefined) window.clearTimeout(timer);
     };
   }, []);
 
