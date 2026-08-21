@@ -21,7 +21,7 @@ export default function StudioCanvasClient() {
         if (!cancelled) window.requestIdleCallback(start, { timeout: 900 });
       }, 250);
     } else {
-      timer = window.setTimeout(start, 450);
+      timer = setTimeout(start, 450) as unknown as number;
     }
 
     return () => {
